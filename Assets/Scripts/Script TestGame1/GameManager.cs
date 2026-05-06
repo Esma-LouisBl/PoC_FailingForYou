@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class GameManager : NetworkBehaviour
 {
-    public GameObject playerUI, serverUI, connectionUI, crushUI;
+    public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI;
     public TextMeshProUGUI myNumberAsPlayerText;
 
     public NetworkVariable<int> numberOfPlayers;
@@ -21,6 +21,8 @@ public class GameManager : NetworkBehaviour
         {
             connectionUI.SetActive(false);
             playerUI.SetActive(true);
+            playerNameUI.SetActive(true);
+            playerCharacterUI.SetActive(false);
             //numberOfPlayers.Value++;
             //myNumberAsPlayer = numberOfPlayers.Value;
             //myNumberAsPlayerText.text = myNumberAsPlayer.ToString();
@@ -50,5 +52,14 @@ public class GameManager : NetworkBehaviour
     {
         string absoluteName = playerName.text;
         myPlayer.SendPlayerNameServerRpc(absoluteName);
+        playerNameUI.SetActive(false);
+        playerCharacterUI.SetActive(true);
+    }
+
+    //Impossible de passer un Sprite dans un ServerRPC donc on attribue un numéro à chaque sprite pour le retrouver par la suite
+    public void PlayerCharacterSpriteButton(int characterSprite)
+    {
+        myPlayer.SendPlayerCharacterSpriteServerRpc(characterSprite);
+        playerCharacterUI.SetActive(false);
     }
 }

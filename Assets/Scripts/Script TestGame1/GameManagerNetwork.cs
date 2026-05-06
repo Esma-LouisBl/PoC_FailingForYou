@@ -12,6 +12,7 @@ public class GameManagerNetwork : NetworkBehaviour
     
     
     public List<PlayerScriptableObject> playerObjects;
+    public List<Sprite> allPlayerSprites;
 
     public CrushCreation crushManager;
 
@@ -125,7 +126,17 @@ public class GameManagerNetwork : NetworkBehaviour
             {
                 playerScriptableObject.playerName = pName;
             }
-            Debug.Log(playerScriptableObject.playerName);
+        }
+    }
+
+    public void ReceiveCharacterSprite(PlayerNetwork player, int sprite)
+    {
+        foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
+        {
+            if (playerScriptableObject.playerNetwork == player)
+            {
+                playerScriptableObject.playerSprite = allPlayerSprites[sprite-1];
+            }
         }
     }
     

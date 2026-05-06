@@ -103,4 +103,10 @@ public class PlayerNetwork : NetworkBehaviour
         playerName = enteredName;
         gameManagerNetwork.ReceiveName(this, playerName);
     }
+
+    [ServerRpc]
+    public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
+    {
+        gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
+    }
 }
