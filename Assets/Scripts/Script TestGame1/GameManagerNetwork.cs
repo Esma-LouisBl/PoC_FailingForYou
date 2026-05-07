@@ -25,6 +25,8 @@ public class GameManagerNetwork : NetworkBehaviour
     private List<TextMeshProUGUI> joinSlots = new List<TextMeshProUGUI>();
     [SerializeField]
     private List<TextMeshProUGUI> nameSlots = new List<TextMeshProUGUI>();
+    [SerializeField]
+    private List<Image> spriteSlots = new List<Image>();
     
     public void RegisterPlayer(PlayerNetwork player)
     {
@@ -135,9 +137,12 @@ public class GameManagerNetwork : NetworkBehaviour
     {
         foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
         {
-            if (playerScriptableObject.playerNetwork == player)
+            if (playerScriptableObject.playerNetwork == player)     //Affichage du sprite + retire le texte
             {
                 playerScriptableObject.playerSprite = allPlayerSprites[sprite-1];
+                spriteSlots[playerScriptableObject.playerId].enabled = true;
+                spriteSlots[playerScriptableObject.playerId].sprite = playerScriptableObject.playerSprite;
+                joinSlots[playerScriptableObject.playerId].text = "";
             }
         }
     }

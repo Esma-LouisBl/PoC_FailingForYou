@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 public class GameManager : NetworkBehaviour
 {
@@ -23,6 +22,7 @@ public class GameManager : NetworkBehaviour
             playerUI.SetActive(true);
             playerNameUI.SetActive(true);
             playerCharacterUI.SetActive(false);
+
             //numberOfPlayers.Value++;
             //myNumberAsPlayer = numberOfPlayers.Value;
             //myNumberAsPlayerText.text = myNumberAsPlayer.ToString();

@@ -7,6 +7,7 @@ using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerNetwork : NetworkBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerNetwork : NetworkBehaviour
     
     
     [NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories;
+    public Button startCrushButton;
 
     public override void OnNetworkSpawn()
     {
@@ -38,6 +40,9 @@ public class PlayerNetwork : NetworkBehaviour
             StartCoroutine(GetIdWithDelay());
             gameManagerNetwork.crushManager.playerRef = this;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
+            
+            startCrushButton.interactable = false;
+            startCrushButton.enabled = false;
             
             SendInputServerRpc(12); //Update PlayerObjects List
         }
@@ -108,5 +113,15 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
+
+        if (gameManagerNetwork.playerObjects[0].playerNetwork == this)
+        {
+            startCrushButton.interactable = true;
+        }
+    }
+    
+    private void ShowStartCrushButton()
+    {
+        startCrushButton.enabled = true;
     }
 }
