@@ -24,7 +24,7 @@ public class ServerManager : MonoBehaviour
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(5);
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-        codeText.text = "Code : " + joinCode;
+        codeText.text = "ENTER THE CODE [" + joinCode + "]";
 
         var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 

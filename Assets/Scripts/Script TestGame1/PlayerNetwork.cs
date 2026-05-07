@@ -83,7 +83,7 @@ public class PlayerNetwork : NetworkBehaviour
         playerNumber = gameManager.myNumberAsPlayer;
         
         //canvasStartCrush.SetActive(true); //Je pose ça là pour le moment histoire de l'activer dès le début mais pas chez tout le monde
-        LoadCrushCreation();
+        // LoadCrushCreation();
         /*
         if (playerNumber >= 2)
         {
@@ -102,5 +102,11 @@ public class PlayerNetwork : NetworkBehaviour
     {
         playerName = enteredName;
         gameManagerNetwork.ReceiveName(this, playerName);
+    }
+
+    [ServerRpc]
+    public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
+    {
+        gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
     }
 }

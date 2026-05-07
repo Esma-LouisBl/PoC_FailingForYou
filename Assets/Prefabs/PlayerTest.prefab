@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2799776811
+  GlobalObjectIdHash: 4181220663
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1090,6 +1090,7 @@ MonoBehaviour:
   playerNumber: 0
   gameManagerNetwork: {fileID: 0}
   gameManager: {fileID: 0}
+  playerName: 
   canvasJump: {fileID: 1427942676219092391}
   canvasHair: {fileID: 672508776112351202}
   canvasFace: {fileID: 7467908582515491187}
