@@ -23,6 +23,8 @@ public class GameManagerNetwork : NetworkBehaviour
     private Vector3 jumpVector = new Vector3(0, 2f, 0);
     [SerializeField]
     private List<TextMeshProUGUI> joinSlots = new List<TextMeshProUGUI>();
+    [SerializeField]
+    private List<TextMeshProUGUI> nameSlots = new List<TextMeshProUGUI>();
     
     public void RegisterPlayer(PlayerNetwork player)
     {
@@ -53,7 +55,6 @@ public class GameManagerNetwork : NetworkBehaviour
                     gameObject.GetComponent<GameManager>().myNumberAsPlayer = numberOfPlayers.Value;
                 }
                 playerHeight = 0.51f;
-                Debug.Log(player.gameManager.myNumberAsPlayer);
                 player.gameManager.myNumberAsPlayerText.text = "Player : " + player.gameManager.myNumberAsPlayer;
                 player.transform.position = new Vector3(numberOfPlayers.Value+0.2f, 0.5f, 0);
                 player.GetComponentInChildren<TextMeshPro>().text = numberOfPlayers.Value.ToString();
@@ -125,6 +126,7 @@ public class GameManagerNetwork : NetworkBehaviour
             if (playerScriptableObject.playerNetwork == player)
             {
                 playerScriptableObject.playerName = pName;
+                nameSlots[playerScriptableObject.playerId].text = pName;
             }
         }
     }
