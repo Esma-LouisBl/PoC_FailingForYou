@@ -61,5 +61,7 @@ public class GameManager : NetworkBehaviour
     {
         myPlayer.SendPlayerCharacterSpriteServerRpc(characterSprite);
         playerCharacterUI.SetActive(false);
+        
+        myPlayer.CheckVipServerRpc();
     }
 }

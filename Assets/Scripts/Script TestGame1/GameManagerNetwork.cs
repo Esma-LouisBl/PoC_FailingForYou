@@ -146,6 +146,20 @@ public class GameManagerNetwork : NetworkBehaviour
             }
         }
     }
+
+    public void ReceiveCheckVip(PlayerNetwork player)
+    {
+        foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
+        {
+            if (playerScriptableObject.playerId == 0)
+            {
+                if (playerScriptableObject.playerNetwork == player)
+                {
+                    player.isVip = true;
+                }
+            }
+        }
+    }
     
     /*
     private void Update()

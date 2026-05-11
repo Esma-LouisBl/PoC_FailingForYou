@@ -12,6 +12,8 @@ using UnityEngine.UI;
 public class PlayerNetwork : NetworkBehaviour
 {
     public int playerId, playerNumber;
+    public bool isVip;
+    
     public GameManagerNetwork gameManagerNetwork;
 
     public GameManager gameManager;
@@ -20,7 +22,7 @@ public class PlayerNetwork : NetworkBehaviour
     
     
     [NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories;
-    private Button startCrushButton;
+    private GameObject startCrushButton;
 
     public override void OnNetworkSpawn()
     {
@@ -43,9 +45,9 @@ public class PlayerNetwork : NetworkBehaviour
             gameManagerNetwork.crushManager.playerRef = this;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
             
-            startCrushButton = GameObject.FindWithTag("StartCrushButton").GetComponent<Button>();
-            startCrushButton.interactable = false;
-            // startCrushButton.enabled = false;
+            startCrushButton = GameObject.FindWithTag("StartCrushButton");
+            startCrushButton.GetComponent<Button>().interactable = false;
+            startCrushButton.SetActive(false);
             
             SendInputServerRpc(12); //Update PlayerObjects List
         }
@@ -116,15 +118,16 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
-
-        // if (gameManagerNetwork.playerObjects[0].playerNetwork == this)
-        // {
-        //     startCrushButton.interactable = true;
-        // }
     }
     
     private void ShowStartCrushButton()
     {
-        startCrushButton.enabled = true;
+        startCrushButton.SetActive(true);
+    }
+
+    [ServerRpc]
+    public void CheckVipServerRpc()
+    {
+        gameManagerNetwork.ReceiveCheckVip(this);
     }
 }
