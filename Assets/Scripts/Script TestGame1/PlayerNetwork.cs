@@ -20,7 +20,7 @@ public class PlayerNetwork : NetworkBehaviour
     
     
     [NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories;
-    public Button startCrushButton;
+    private Button startCrushButton;
 
     public override void OnNetworkSpawn()
     {
@@ -31,6 +31,8 @@ public class PlayerNetwork : NetworkBehaviour
         {
             playerId = OwnerClientId.GetHashCode();
             FindFirstObjectByType<GameManagerNetwork>().RegisterPlayer(this);
+            
+            // startCrushButton.enabled = false;
         }
         StartCoroutine(InitWithDelay());
         if (IsOwner)
@@ -41,8 +43,9 @@ public class PlayerNetwork : NetworkBehaviour
             gameManagerNetwork.crushManager.playerRef = this;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
             
+            startCrushButton = GameObject.FindWithTag("StartCrushButton").GetComponent<Button>();
             startCrushButton.interactable = false;
-            startCrushButton.enabled = false;
+            // startCrushButton.enabled = false;
             
             SendInputServerRpc(12); //Update PlayerObjects List
         }
@@ -114,10 +117,10 @@ public class PlayerNetwork : NetworkBehaviour
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
 
-        if (gameManagerNetwork.playerObjects[0].playerNetwork == this)
-        {
-            startCrushButton.interactable = true;
-        }
+        // if (gameManagerNetwork.playerObjects[0].playerNetwork == this)
+        // {
+        //     startCrushButton.interactable = true;
+        // }
     }
     
     private void ShowStartCrushButton()
