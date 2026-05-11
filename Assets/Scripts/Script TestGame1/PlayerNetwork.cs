@@ -7,6 +7,7 @@ using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class PlayerNetwork : NetworkBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerNetwork : NetworkBehaviour
     public string playerName;
     
     
-    [NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories;
+    [NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories, canvasSabotage;
 
     public override void OnNetworkSpawn()
     {
@@ -38,6 +39,7 @@ public class PlayerNetwork : NetworkBehaviour
             StartCoroutine(GetIdWithDelay());
             gameManagerNetwork.crushManager.playerRef = this;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
+            canvasJump.SetActive(true);
             
             SendInputServerRpc(12); //Update PlayerObjects List
         }
@@ -108,5 +110,11 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
+    }
+    
+    [ServerRpc]
+    public void SendSabotageServerRpc(int targetNumber)
+    {
+        gameManagerNetwork.ReceiveSabotage(targetNumber, playerNumber);
     }
 }

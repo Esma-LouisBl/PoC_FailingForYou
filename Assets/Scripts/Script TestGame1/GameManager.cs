@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Unity.Netcode;
 
 public class GameManager : NetworkBehaviour
 {
-    public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI;
+    public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI, isSabotageUI;
     public TextMeshProUGUI myNumberAsPlayerText;
 
     public NetworkVariable<int> numberOfPlayers;
@@ -61,5 +62,20 @@ public class GameManager : NetworkBehaviour
     {
         myPlayer.SendPlayerCharacterSpriteServerRpc(characterSprite);
         playerCharacterUI.SetActive(false);
+    }
+
+    public void Sabotage()
+    {
+        StartCoroutine(SabotageRoutine());
+    }
+
+    private IEnumerator SabotageRoutine()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            isSabotageUI.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            isSabotageUI.SetActive(false);
+        }
     }
 }

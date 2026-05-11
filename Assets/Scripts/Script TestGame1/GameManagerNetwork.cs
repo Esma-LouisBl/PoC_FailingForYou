@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManagerNetwork : NetworkBehaviour
 {
@@ -53,7 +54,6 @@ public class GameManagerNetwork : NetworkBehaviour
                     gameObject.GetComponent<GameManager>().myNumberAsPlayer = numberOfPlayers.Value;
                 }
                 playerHeight = 0.51f;
-                Debug.Log(player.gameManager.myNumberAsPlayer);
                 player.gameManager.myNumberAsPlayerText.text = "Player : " + player.gameManager.myNumberAsPlayer;
                 player.transform.position = new Vector3(numberOfPlayers.Value+0.2f, 0.5f, 0);
                 player.GetComponentInChildren<TextMeshPro>().text = numberOfPlayers.Value.ToString();
@@ -137,6 +137,28 @@ public class GameManagerNetwork : NetworkBehaviour
             {
                 playerScriptableObject.playerSprite = allPlayerSprites[sprite-1];
             }
+        }
+    }
+    
+    public void ReceiveSabotage(int targetNumber, int playerNumber)
+    {
+        //targetNumber = Random.Range(1, 4);
+        targetNumber = 1;
+        /*
+        while (targetNumber != playerNumber)
+        {
+            targetNumber = Random.Range(1, 4);
+        }
+        */
+        SabotageTargetPlayerClientRpc(targetNumber);
+    }
+
+    [ClientRpc]
+    public void SabotageTargetPlayerClientRpc(int targetPlayer)
+    {
+        if (targetPlayer == gameObject.GetComponent<GameManager>().myNumberAsPlayer)
+        {
+            gameObject.GetComponent<GameManager>().Sabotage();
         }
     }
     
