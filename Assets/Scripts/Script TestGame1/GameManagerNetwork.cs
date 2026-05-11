@@ -149,32 +149,15 @@ public class GameManagerNetwork : NetworkBehaviour
 
     public void ReceiveCheckVip(PlayerNetwork player)
     {
-        // foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
-        // {
-        //     if (playerScriptableObject.playerId == 0)
-        //     {
-        //         if (playerScriptableObject.playerNetwork == player)
-        //         {
-        //             player.isVip = true;
-        //             // player.ShowStartCrushButton();
-        //             Debug.Log(playerScriptableObject.playerName);
-        //             Debug.Log(playerScriptableObject.playerNetwork);
-        //             
-        //             SendVipToClientRpc();
-        //         }
-        //     }
-        // }
         SendVipToClientRpc();
     }
 
     [ClientRpc]
     public void SendVipToClientRpc()
     {
-        Debug.Log("aaaaaaah");
         if (gameObject.GetComponent<GameManager>().myNumberAsPlayer == 1)
         {
             gameObject.GetComponent<GameManager>().myPlayer.isVip = true;
-            Debug.Log("oui");
         }
     }
     

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using Unity.Netcode;
@@ -6,7 +8,9 @@ using UnityEngine.UI;
 
 public class GameManager : NetworkBehaviour
 {
-    public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI;
+    public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI;
+    public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
+    private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
     
     private GameObject startCrushButton;
@@ -30,8 +34,12 @@ public class GameManager : NetworkBehaviour
             //myNumberAsPlayer = numberOfPlayers.Value;
             //myNumberAsPlayerText.text = myNumberAsPlayer.ToString();
             startCrushButton = GameObject.FindWithTag("StartCrushButton");
-            startCrushButton.GetComponent<Button>().interactable = false;
+            // startCrushButton.GetComponent<Button>().interactable = false;
             startCrushButton.SetActive(false);
+            crushParts.Add("Hair");
+            crushParts.Add("Accessories");
+            crushParts.Add("Faces");
+            crushParts.Add("Clothes");
         }
     }
     
@@ -46,7 +54,25 @@ public class GameManager : NetworkBehaviour
 
     public void ShowCrush()
     {
-        crushUI.SetActive(true);
+        int randomNumber = Random.Range(0, crushParts.Count);
+        string partToShow =  crushParts[randomNumber];
+        switch (partToShow)
+        {
+            case "Hair":
+                crushHair.SetActive(true);
+                break;
+            case "Accessories":
+                crushAccessories.SetActive(true);
+                break;
+            case "Faces":
+                crushFaces.SetActive(true);
+                break;
+            case "Clothes":
+                crushClothes.SetActive(true);
+                break;
+        }
+        playerCrushUI.SetActive(true);
+        crushParts.Remove(partToShow);
     }
     
     public void StartMiniGame()
@@ -69,19 +95,21 @@ public class GameManager : NetworkBehaviour
         playerCharacterUI.SetActive(false);
         
         myPlayer.CheckVipServerRpc();
-        // StartCoroutine(WaitForPlayers());
+        StartCoroutine(WaitBeforeAction());
     }
 
-    private IEnumerator WaitForPlayers()
+    public void ShowCrushButton()
     {
-        Debug.Log("coco");
-        yield return new WaitForSeconds(1f);
         if (myPlayer.isVip)
         {
-            Debug.Log("normalement on est bon");
             startCrushButton.SetActive(true);
         }
-
-        Debug.Log("bon bah jvais momurir");
     }
+
+    private IEnumerator WaitBeforeAction()
+    {
+        yield return new WaitForSeconds(1);
+        ShowCrushButton();
+    }
+
 }
