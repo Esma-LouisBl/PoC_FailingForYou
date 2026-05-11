@@ -515,7 +515,6 @@ GameObject:
   - component: {fileID: 91138811}
   - component: {fileID: 91138810}
   - component: {fileID: 91138809}
-  - component: {fileID: 91138812}
   m_Layer: 5
   m_Name: Item 5
   m_TagString: Untagged
@@ -557,13 +556,13 @@ MonoBehaviour:
   m_OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 91138812}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -607,20 +606,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91138807}
   m_CullTransparentMesh: 1
---- !u!114 &91138812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91138807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
-  previewImage: {fileID: 1627556221}
-  sprite: {fileID: 0}
 --- !u!1 &102401414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1010,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1687188573}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Confirm
         m_Mode: 1
@@ -5791,7 +5776,6 @@ GameObject:
   - component: {fileID: 747970262}
   - component: {fileID: 747970263}
   - component: {fileID: 747970264}
-  - component: {fileID: 747970265}
   m_Layer: 5
   m_Name: Item 3
   m_TagString: Untagged
@@ -5871,32 +5855,18 @@ MonoBehaviour:
   m_OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 747970265}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &747970265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747970260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
-  previewImage: {fileID: 1627556221}
-  sprite: {fileID: 0}
 --- !u!1 &766327319
 GameObject:
   m_ObjectHideFlags: 0
@@ -6042,7 +6012,6 @@ GameObject:
   - component: {fileID: 802288476}
   - component: {fileID: 802288475}
   - component: {fileID: 802288478}
-  - component: {fileID: 802288479}
   m_Layer: 5
   m_Name: Item 4
   m_TagString: Untagged
@@ -6122,32 +6091,18 @@ MonoBehaviour:
   m_OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 802288479}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &802288479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802288474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
-  previewImage: {fileID: 1627556221}
-  sprite: {fileID: 0}
 --- !u!1 &827195557
 GameObject:
   m_ObjectHideFlags: 0
@@ -6952,7 +6907,6 @@ GameObject:
   - component: {fileID: 998713429}
   - component: {fileID: 998713430}
   - component: {fileID: 998713431}
-  - component: {fileID: 998713432}
   m_Layer: 5
   m_Name: Item 1
   m_TagString: Untagged
@@ -7032,32 +6986,18 @@ MonoBehaviour:
   m_OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 998713432}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 21300000, guid: c828558278b2a304a8821aaa259dec22, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &998713432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998713427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
-  previewImage: {fileID: 1627556221}
-  sprite: {fileID: 21300000, guid: c828558278b2a304a8821aaa259dec22, type: 3}
 --- !u!1 &1013819315
 GameObject:
   m_ObjectHideFlags: 0
@@ -7483,6 +7423,7 @@ GameObject:
   - component: {fileID: 1079560719}
   - component: {fileID: 1079560718}
   - component: {fileID: 1079560717}
+  - component: {fileID: 1079560720}
   m_Layer: 5
   m_Name: UI CrushPlayer
   m_TagString: UICrush
@@ -7579,6 +7520,48 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1079560720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079560715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
+  previewImage: {fileID: 1627556221}
+  hairList:
+  - {fileID: 21300000, guid: c828558278b2a304a8821aaa259dec22, type: 3}
+  - {fileID: 21300000, guid: 7e89c97f24f3a9748bc443f79a93de27, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  accessoriesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  facesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  clothesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  chosen: {fileID: 0}
 --- !u!1 &1118898392
 GameObject:
   m_ObjectHideFlags: 0
@@ -11066,7 +11049,6 @@ GameObject:
   - component: {fileID: 1687188572}
   - component: {fileID: 1687188571}
   - component: {fileID: 1687188570}
-  - component: {fileID: 1687188573}
   m_Layer: 5
   m_Name: Item 6
   m_TagString: Untagged
@@ -11108,13 +11090,13 @@ MonoBehaviour:
   m_OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1687188573}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11158,20 +11140,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687188568}
   m_CullTransparentMesh: 1
---- !u!114 &1687188573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687188568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
-  previewImage: {fileID: 1627556221}
-  sprite: {fileID: 0}
 --- !u!1 &1705622017
 GameObject:
   m_ObjectHideFlags: 0
@@ -11425,7 +11393,6 @@ GameObject:
   - component: {fileID: 1784067192}
   - component: {fileID: 1784067193}
   - component: {fileID: 1784067194}
-  - component: {fileID: 1784067195}
   m_Layer: 5
   m_Name: Item 2
   m_TagString: Untagged
@@ -11505,32 +11472,18 @@ MonoBehaviour:
   m_OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1784067195}
+      - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 21300000, guid: 7e89c97f24f3a9748bc443f79a93de27, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1784067195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784067190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5790d62c05c525e42a4129e15c6700ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
-  previewImage: {fileID: 1627556221}
-  sprite: {fileID: 21300000, guid: 7e89c97f24f3a9748bc443f79a93de27, type: 3}
 --- !u!1 &1787514856
 GameObject:
   m_ObjectHideFlags: 0

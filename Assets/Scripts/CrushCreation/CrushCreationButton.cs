@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,15 +6,25 @@ public class CrushCreationButton : MonoBehaviour
 {
     public Image previewImage;
 
-    public Sprite sprite;
+    // public List<Sprite> hairList;
+    // public List<Sprite> accessoriesList;
+    // public List<Sprite> facesList;
+    // public List<Sprite> clothesList;
 
-    public void Select()
+    public Sprite chosen;
+    public int spriteInt;
+    
+    private PlayerNetwork playerNetwork;
+
+    public void Select(Sprite sprite)
     {
-        previewImage.sprite = sprite;
+        chosen = sprite;
+        previewImage.sprite = chosen;
     }
     
     public void Confirm()
     {
-        Debug.Log("Confirm");
+        playerNetwork = FindFirstObjectByType<PlayerNetwork>();
+        playerNetwork.SendCrushServerRpc(spriteInt);
     }
 }

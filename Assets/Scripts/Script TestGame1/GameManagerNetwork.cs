@@ -13,8 +13,18 @@ public class GameManagerNetwork : NetworkBehaviour
     
     public List<PlayerScriptableObject> playerObjects;
     public List<Sprite> allPlayerSprites;
+    
+    public List<Sprite> allCrushHairSprites;
+    public List<Sprite> allCrushFacesSprites;
+    public List<Sprite> allCrushAccessoriesSprites;
+    public List<Sprite> allCrushClothesSprites;
+    
+    public Sprite crushHair;
+    public Sprite crushFace;
+    public Sprite crushAccessory;
+    public Sprite crushClothes;
 
-    public CrushCreation crushManager;
+    // public CrushCreation crushManager;
 
     private bool readyToShowCrush;
     
@@ -75,30 +85,30 @@ public class GameManagerNetwork : NetworkBehaviour
                 break;
             
             //Relative to Crush Creation
-            case 4:
-                crushManager.ChangeHair(true);
-                break;
-            case 5:
-                crushManager.ChangeHair(false);
-                break;
-            case 6:
-                crushManager.ChangeFace(true);
-                break;
-            case 7:
-                crushManager.ChangeFace(false);
-                break;
-            case 8:
-                crushManager.ChangeBody(true);
-                break;
-            case 9:
-                crushManager.ChangeBody(false);
-                break;
-            case 10:
-                crushManager.ChangeAccessories(true);
-                break;
-            case 11:
-                crushManager.ChangeAccessories(false);
-                break;
+            // case 4:
+            //     crushManager.ChangeHair(true);
+            //     break;
+            // case 5:
+            //     crushManager.ChangeHair(false);
+            //     break;
+            // case 6:
+            //     crushManager.ChangeFace(true);
+            //     break;
+            // case 7:
+            //     crushManager.ChangeFace(false);
+            //     break;
+            // case 8:
+            //     crushManager.ChangeBody(true);
+            //     break;
+            // case 9:
+            //     crushManager.ChangeBody(false);
+            //     break;
+            // case 10:
+            //     crushManager.ChangeAccessories(true);
+            //     break;
+            // case 11:
+            //     crushManager.ChangeAccessories(false);
+            //     break;
             
             //Relative to Player ScriptableObject
             case 12:
@@ -144,6 +154,26 @@ public class GameManagerNetwork : NetworkBehaviour
                 spriteSlots[playerScriptableObject.playerId].sprite = playerScriptableObject.playerSprite;
                 joinSlots[playerScriptableObject.playerId].text = "";
             }
+        }
+    }
+
+    public void ReceiveCrush(PlayerNetwork player, int sprite)
+    {
+        if (sprite <= 6)
+        {
+            crushHair = allCrushHairSprites[sprite-1];
+        }
+        else if (sprite <= 12)
+        {
+            crushFace = allCrushFacesSprites[sprite - 7];
+        }
+        else if (sprite <= 18)
+        {
+            crushAccessory = allCrushAccessoriesSprites[sprite - 13];
+        }
+        else
+        {
+            crushClothes = allCrushClothesSprites[sprite - 19];
         }
     }
 
