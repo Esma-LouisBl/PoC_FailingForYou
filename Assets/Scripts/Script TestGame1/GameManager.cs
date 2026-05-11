@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using Unity.Netcode;
@@ -7,6 +8,8 @@ public class GameManager : NetworkBehaviour
 {
     public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI;
     public TextMeshProUGUI myNumberAsPlayerText;
+    
+    private GameObject startCrushButton;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -26,6 +29,9 @@ public class GameManager : NetworkBehaviour
             //numberOfPlayers.Value++;
             //myNumberAsPlayer = numberOfPlayers.Value;
             //myNumberAsPlayerText.text = myNumberAsPlayer.ToString();
+            startCrushButton = GameObject.FindWithTag("StartCrushButton");
+            startCrushButton.GetComponent<Button>().interactable = false;
+            startCrushButton.SetActive(false);
         }
     }
     
@@ -63,5 +69,19 @@ public class GameManager : NetworkBehaviour
         playerCharacterUI.SetActive(false);
         
         myPlayer.CheckVipServerRpc();
+        // StartCoroutine(WaitForPlayers());
+    }
+
+    private IEnumerator WaitForPlayers()
+    {
+        Debug.Log("coco");
+        yield return new WaitForSeconds(1f);
+        if (myPlayer.isVip)
+        {
+            Debug.Log("normalement on est bon");
+            startCrushButton.SetActive(true);
+        }
+
+        Debug.Log("bon bah jvais momurir");
     }
 }
