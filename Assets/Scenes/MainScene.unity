@@ -171,7 +171,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &54321512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +349,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &82431401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,11 +583,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2654,7 +2678,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 17
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &326179446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4254,7 +4290,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &589244640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4482,7 +4530,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 16
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &598157227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4712,7 +4772,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 19
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &609251371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4878,7 +4950,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &648775831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5858,11 +5942,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6094,11 +6178,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6989,11 +7073,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: c828558278b2a304a8821aaa259dec22, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7445,8 +7529,8 @@ RectTransform:
   m_Children:
   - {fileID: 217999155}
   - {fileID: 1144983527}
-  - {fileID: 175478525}
   - {fileID: 660935965}
+  - {fileID: 175478525}
   - {fileID: 1077779318}
   - {fileID: 168522095}
   - {fileID: 1627556220}
@@ -7533,35 +7617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrushCreationButton
   previewImage: {fileID: 1627556221}
-  hairList:
-  - {fileID: 21300000, guid: c828558278b2a304a8821aaa259dec22, type: 3}
-  - {fileID: 21300000, guid: 7e89c97f24f3a9748bc443f79a93de27, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  accessoriesList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  facesList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  clothesList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  chosen: {fileID: 0}
+  spriteInt: 0
+  gameManagerNetwork: {fileID: 1787514861}
 --- !u!1 &1118898392
 GameObject:
   m_ObjectHideFlags: 0
@@ -8000,7 +8057,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 15
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1207225715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9536,7 +9605,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 18
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1505716258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9766,7 +9847,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 24
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1530744855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9990,7 +10083,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 21
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1590758330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11093,11 +11198,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11192,7 +11297,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 14
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1705622020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11475,11 +11592,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1079560720}
         m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
         m_MethodName: Select
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 7e89c97f24f3a9748bc443f79a93de27, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11619,7 +11736,38 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5eb718c97066c80478f373ca260f1b28, type: 3}
   - {fileID: 21300000, guid: 5eb718c97066c80478f373ca260f1b28, type: 3}
   - {fileID: 21300000, guid: 5eb718c97066c80478f373ca260f1b28, type: 3}
-  crushManager: {fileID: 0}
+  allCrushHairSprites:
+  - {fileID: 21300000, guid: 7e89c97f24f3a9748bc443f79a93de27, type: 3}
+  - {fileID: 21300000, guid: c828558278b2a304a8821aaa259dec22, type: 3}
+  - {fileID: 21300000, guid: d1cbebf73326cc546ae0b8d7f12f6b78, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allCrushFacesSprites:
+  - {fileID: 21300000, guid: 812e4df920b1e014facb5665acd75370, type: 3}
+  - {fileID: 21300000, guid: 069389dcea19aca45bf57d0fde914cb6, type: 3}
+  - {fileID: 21300000, guid: 3f616ad6593048c4d8b80ca1b87a5994, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allCrushAccessoriesSprites:
+  - {fileID: 21300000, guid: 64218146e6be5d3418799621d3dee7f7, type: 3}
+  - {fileID: 21300000, guid: 8e6f8feafaabcfa448442f122033571e, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allCrushClothesSprites:
+  - {fileID: 21300000, guid: 21dbc1cd27d5f404e8096fba6c5e544d, type: 3}
+  - {fileID: 21300000, guid: 300e7a94b410fd64ba3590d4f8b38c25, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  crushHair: {fileID: 0}
+  crushFace: {fileID: 0}
+  crushAccessory: {fileID: 0}
+  crushClothes: {fileID: 0}
   joinSlots:
   - {fileID: 1387463299}
   - {fileID: 1671268366}
@@ -12001,7 +12149,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 20
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1868389772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12229,7 +12389,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 12
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1886501281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13027,7 +13199,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 23
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2012714559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13193,7 +13377,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 22
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2025162775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13417,7 +13613,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2041133551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13804,7 +14012,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastClickButton
   m_OnPressed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079560720}
+        m_TargetAssemblyTypeName: CrushCreationButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 13
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2123404872
 MonoBehaviour:
   m_ObjectHideFlags: 0

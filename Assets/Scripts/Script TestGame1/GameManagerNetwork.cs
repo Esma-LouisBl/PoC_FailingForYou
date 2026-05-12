@@ -185,9 +185,11 @@ public class GameManagerNetwork : NetworkBehaviour
     [ClientRpc]
     public void SendVipToClientRpc()
     {
+        Debug.Log("fonction lancée");
         if (gameObject.GetComponent<GameManager>().myNumberAsPlayer == 1)
         {
             gameObject.GetComponent<GameManager>().myPlayer.isVip = true;
+            Debug.Log("passé vip");
         }
     }
     
