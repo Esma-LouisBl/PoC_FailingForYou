@@ -75,6 +75,16 @@ public class GameManager : NetworkBehaviour
         crushParts.Remove(partToShow);
     }
 
+    public void ShowCrushServer()
+    {
+        myPlayer.ShowCrushUIServerRpc();
+    }
+
+    public void ShowCrushServerPart2()
+    {
+        serverCrushUI.SetActive(true);
+    }
+
     public void HideCrush()
     {
         playerCrushUI.SetActive(false);

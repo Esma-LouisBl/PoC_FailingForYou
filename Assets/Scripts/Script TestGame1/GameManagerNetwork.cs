@@ -14,6 +14,8 @@ public class GameManagerNetwork : NetworkBehaviour
     public List<PlayerScriptableObject> playerObjects;
     public List<Sprite> allPlayerSprites;
     
+    
+    //RELATIVE TO CRUSH CREATION
     public List<Sprite> allCrushHairSprites;
     public List<Sprite> allCrushFacesSprites;
     public List<Sprite> allCrushAccessoriesSprites;
@@ -23,6 +25,8 @@ public class GameManagerNetwork : NetworkBehaviour
     public Sprite crushFace;
     public Sprite crushAccessory;
     public Sprite crushClothes;
+
+    public int crushPartsChosen;
 
     // public CrushCreation crushManager;
 
@@ -175,6 +179,8 @@ public class GameManagerNetwork : NetworkBehaviour
         {
             crushClothes = allCrushClothesSprites[sprite - 19];
         }
+
+        crushPartsChosen++;     //On incrémente ce nombre pour vérifier si tous les joueurs ont choisi leur partie
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)
