@@ -115,7 +115,6 @@ public class PlayerNetwork : NetworkBehaviour
     [ServerRpc]
     public void SendSabotageServerRpc(int targetNumber, int initialPlayerNumber)
     {
-        Debug.Log(targetNumber);
         gameManagerNetwork.ReceiveSabotage(targetNumber, initialPlayerNumber);
     }
 }

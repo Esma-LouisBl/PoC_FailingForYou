@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a54b95c1-f4c8-45e8-9f89-579fc869113c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PoC_FailingInLove/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PoC_FailingInLove/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerTest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerTest.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/GameManagerNetwork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/GameManagerNetwork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/InputSender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/InputSender.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/PlayerNetwork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Script TestGame1/PlayerNetwork.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +139,7 @@
       <workItem from="1777883305797" duration="1591000" />
       <workItem from="1777969645173" duration="4216000" />
       <workItem from="1778057577988" duration="1839000" />
-      <workItem from="1778570072794" duration="3360000" />
+      <workItem from="1778570072794" duration="3769000" />
     </task>
     <servers />
   </component>
