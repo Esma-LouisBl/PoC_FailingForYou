@@ -40,4 +40,9 @@ public class InputSender : MonoBehaviour
         
         player.SendInputServerRpc(2);
     }
+    
+    public void SabotageWithButton(int targetNumber)
+    {
+        player.SendSabotageServerRpc(targetNumber, gameObject.GetComponent<PlayerNetwork>().playerNumber);
+    }
 }

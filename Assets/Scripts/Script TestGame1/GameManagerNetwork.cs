@@ -140,16 +140,12 @@ public class GameManagerNetwork : NetworkBehaviour
         }
     }
     
-    public void ReceiveSabotage(int targetNumber, int playerNumber)
+    public void ReceiveSabotage(int targetNumber, int playerNumber) //player selection
     {
-        //targetNumber = Random.Range(1, 4);
-        targetNumber = 1;
-        /*
-        while (targetNumber != playerNumber)
+        if (targetNumber >= playerNumber)
         {
-            targetNumber = Random.Range(1, 4);
+            targetNumber += 1;
         }
-        */
         SabotageTargetPlayerClientRpc(targetNumber);
     }
 

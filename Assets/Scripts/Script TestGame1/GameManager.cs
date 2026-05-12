@@ -76,6 +76,7 @@ public class GameManager : NetworkBehaviour
             isSabotageUI.SetActive(true);
             yield return new WaitForSeconds(0.1f);
             isSabotageUI.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
