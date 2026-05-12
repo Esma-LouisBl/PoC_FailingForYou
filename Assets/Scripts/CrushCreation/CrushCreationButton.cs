@@ -45,5 +45,6 @@ public class CrushCreationButton : MonoBehaviour
     {
         playerNetwork = FindFirstObjectByType<PlayerNetwork>();
         playerNetwork.SendCrushServerRpc(spriteInt);
+        playerNetwork.gameManager.HideCrush();
     }
 }

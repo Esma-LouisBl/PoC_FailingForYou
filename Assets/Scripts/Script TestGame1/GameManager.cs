@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : NetworkBehaviour
 {
-    public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI;
+    public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, waitingUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
@@ -73,6 +73,12 @@ public class GameManager : NetworkBehaviour
         }
         playerCrushUI.SetActive(true);
         crushParts.Remove(partToShow);
+    }
+
+    public void HideCrush()
+    {
+        playerCrushUI.SetActive(false);
+        waitingUI.SetActive(true);
     }
     
     public void StartMiniGame()
