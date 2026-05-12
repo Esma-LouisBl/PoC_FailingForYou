@@ -86,6 +86,12 @@ public class PlayerNetwork : NetworkBehaviour
     {
         gameManager.ShowCrushServerPart2();
     }
+
+    [ServerRpc]
+    public void ShowCrushUIPlayerServerRpc()
+    {
+        gameManagerNetwork.ShowCrushClientRpc();
+    }
     
     [ServerRpc]
     public void SendCrushServerRpc(int spriteNumber)

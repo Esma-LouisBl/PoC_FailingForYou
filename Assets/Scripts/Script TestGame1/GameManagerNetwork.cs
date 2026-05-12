@@ -93,7 +93,7 @@ public class GameManagerNetwork : NetworkBehaviour
                     joinSlots[numberOfPlayers.Value-1].fontSize = 20;
                     if (players.Count > 1 && readyToShowCrush)
                     {
-                        gameObject.GetComponent<GameManager>().ShowCrush();
+                        gameObject.GetComponent<GameManager>().ShowCrushPart2();
                         FindFirstObjectByType<SpawnerBehavior>().numberOfPlayers = players.Count;
                     }
                 }
@@ -204,6 +204,12 @@ public class GameManagerNetwork : NetworkBehaviour
             
             AskForCrushNameClientRpc();
         }
+    }
+
+    [ClientRpc]
+    public void ShowCrushClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().ShowCrushPart2();
     }
 
     [ClientRpc]

@@ -52,7 +52,11 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    public void ShowCrush()
+    public void ShowCrushPart1()
+    {
+        myPlayer.ShowCrushUIPlayerServerRpc();
+    }
+    public void ShowCrushPart2()
     {
         int randomNumber = Random.Range(0, crushParts.Count);
         string partToShow =  crushParts[randomNumber];
@@ -84,6 +88,16 @@ public class GameManager : NetworkBehaviour
     {
         serverCrushUI.SetActive(true);
         serverUI.SetActive(false);
+    }
+
+    public void PlayerSendCrush(int spriteNumber)
+    {
+        myPlayer.SendCrushServerRpc(spriteNumber);
+    }
+
+    public void PlayerSendCrushName(string enteredName)
+    {
+        myPlayer.SendCrushNameServerRpc(enteredName);
     }
 
     public void HideCrush()
