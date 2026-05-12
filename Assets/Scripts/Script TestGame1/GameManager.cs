@@ -83,6 +83,7 @@ public class GameManager : NetworkBehaviour
     public void ShowCrushServerPart2()
     {
         serverCrushUI.SetActive(true);
+        serverUI.SetActive(false);
     }
 
     public void HideCrush()
@@ -126,6 +127,12 @@ public class GameManager : NetworkBehaviour
     {
         waitingUI.SetActive(false);
         playerCrushNameUI.SetActive(true);
+    }
+
+    public void HideCrushName()
+    {
+        waitingUI.SetActive(true);
+        playerCrushNameUI.SetActive(false);
     }
 
     private IEnumerator WaitBeforeAction()

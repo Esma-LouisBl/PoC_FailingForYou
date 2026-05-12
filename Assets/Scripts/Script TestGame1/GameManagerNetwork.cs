@@ -37,6 +37,7 @@ public class GameManagerNetwork : NetworkBehaviour
 
     public List<string> crushNamePropositions;
     public string crushName;
+    public TextMeshProUGUI crushNameUI;
 
     // public CrushCreation crushManager;
 
@@ -209,6 +210,17 @@ public class GameManagerNetwork : NetworkBehaviour
     public void AskForCrushNameClientRpc()
     {
         gameObject.GetComponent<GameManager>().ShowCrushName();
+    }
+
+    public void ReceiveNameProposition(string enteredName)
+    {
+        crushNamePropositions.Add(enteredName);
+        if (crushNamePropositions.Count == playerObjects.Count)
+        {
+            int r = Random.Range(0, crushNamePropositions.Count);
+            crushName = crushNamePropositions[r];
+            crushNameUI.text = crushName;
+        }
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)

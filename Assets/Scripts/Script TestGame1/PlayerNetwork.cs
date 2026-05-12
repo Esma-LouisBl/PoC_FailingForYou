@@ -93,6 +93,12 @@ public class PlayerNetwork : NetworkBehaviour
         gameManagerNetwork.ReceiveCrush(this, spriteNumber);
     }
 
+    [ServerRpc]
+    public void SendCrushNameServerRpc(string enteredName)
+    {
+        gameManagerNetwork.ReceiveNameProposition(enteredName);
+    }
+
     private IEnumerator InitWithDelay()
     {
         yield return new WaitForSeconds(0.02f);
