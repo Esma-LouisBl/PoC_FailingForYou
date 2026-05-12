@@ -172,6 +172,26 @@ public class GameManagerNetwork : NetworkBehaviour
         }
     }
 
+    public void EverybodyReadyToCreateCrush(PlayerNetwork player)   //On vérifie si tout le monde a un nom et un avatar
+    {
+        foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
+        {
+            if (!playerScriptableObject.playerNetwork.readyToCreateCrush)
+            {
+                return;
+            }
+        }
+
+        player.everybodyReady = true;
+        ActualizeEverybodyReadyClientRpc();
+    }
+
+    [ClientRpc]
+    public void ActualizeEverybodyReadyClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().myPlayer.everybodyReady = true;
+        Debug.Log("sensé être bon");
+    }
     public void ReceiveCrush(PlayerNetwork player, int sprite)
     {
         if (sprite <= 6)
@@ -200,7 +220,6 @@ public class GameManagerNetwork : NetworkBehaviour
             crushAccessorySlot.sprite = crushAccessory;
             crushClothesSlot.sprite = crushClothes;
             crushCurtain.gameObject.SetActive(false);
-            Debug.Log("crush terminé (enfin)");
             
             AskForCrushNameClientRpc();
         }

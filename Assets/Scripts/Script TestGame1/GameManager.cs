@@ -134,6 +134,21 @@ public class GameManager : NetworkBehaviour
         if (myPlayer.isVip)
         {
             startCrushButton.SetActive(true);
+            CheckIfEverybodyReady();
+        }
+    }
+
+    public void CheckIfEverybodyReady()
+    {
+        myPlayer.AskServerReadyToCreateCrushServerRpc();
+        if (myPlayer.everybodyReady)
+        {
+            startCrushButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            startCrushButton.GetComponent<Button>().interactable = false;
+            StartCoroutine(RecheckAfterTime());
         }
     }
 
@@ -153,6 +168,12 @@ public class GameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(1);
         ShowCrushButton();
+    }
+
+    private IEnumerator RecheckAfterTime()  //pas opti du tout, vaudrait mieux relancer la fonction lorsque chaque joueur qui n'est pas vip entre son nom
+    {
+        yield return new WaitForSeconds(1);
+        CheckIfEverybodyReady();
     }
 
 }

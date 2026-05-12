@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class PlayerNetwork : NetworkBehaviour
 {
     public int playerId, playerNumber;
-    public bool isVip;
+    public bool isVip, readyToCreateCrush, everybodyReady;
     
     public GameManagerNetwork gameManagerNetwork;
 
@@ -142,6 +142,7 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
+        readyToCreateCrush = true;
     }
     
     public void ShowStartCrushButton()
@@ -153,5 +154,11 @@ public class PlayerNetwork : NetworkBehaviour
     public void CheckVipServerRpc()
     {
         gameManagerNetwork.ReceiveCheckVip(this);
+    }
+
+    [ServerRpc]
+    public void AskServerReadyToCreateCrushServerRpc()
+    {
+        gameManagerNetwork.EverybodyReadyToCreateCrush(this);
     }
 }
