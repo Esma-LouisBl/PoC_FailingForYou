@@ -12689,6 +12689,11 @@ MonoBehaviour:
   crushFace: {fileID: 0}
   crushAccessory: {fileID: 0}
   crushClothes: {fileID: 0}
+  crushHairSlot: {fileID: 415378882}
+  crushFaceSlot: {fileID: 543471041}
+  crushAccessorySlot: {fileID: 513784509}
+  crushClothesSlot: {fileID: 1521314813}
+  crushCurtain: {fileID: 90204025}
   crushPartsChosen: 0
   joinSlots:
   - {fileID: 1387463299}

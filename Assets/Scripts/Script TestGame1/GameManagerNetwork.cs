@@ -26,6 +26,13 @@ public class GameManagerNetwork : NetworkBehaviour
     public Sprite crushAccessory;
     public Sprite crushClothes;
 
+    public Image crushHairSlot;
+    public Image crushFaceSlot;
+    public Image crushAccessorySlot;
+    public Image crushClothesSlot;
+
+    public Image crushCurtain;
+    
     public int crushPartsChosen;
 
     // public CrushCreation crushManager;
@@ -181,6 +188,16 @@ public class GameManagerNetwork : NetworkBehaviour
         }
 
         crushPartsChosen++;     //On incrémente ce nombre pour vérifier si tous les joueurs ont choisi leur partie
+
+        if (crushPartsChosen == playerObjects.Count)
+        {
+            crushHairSlot.sprite = crushHair;
+            crushFaceSlot.sprite = crushFace;
+            crushAccessorySlot.sprite = crushAccessory;
+            crushClothesSlot.sprite = crushClothes;
+            crushCurtain.gameObject.SetActive(false);
+            Debug.Log("crush terminé (enfin)");
+        }
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)
