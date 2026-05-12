@@ -35,6 +35,9 @@ public class GameManagerNetwork : NetworkBehaviour
     
     public int crushPartsChosen;
 
+    public List<string> crushNamePropositions;
+    public string crushName;
+
     // public CrushCreation crushManager;
 
     private bool readyToShowCrush;
@@ -197,7 +200,15 @@ public class GameManagerNetwork : NetworkBehaviour
             crushClothesSlot.sprite = crushClothes;
             crushCurtain.gameObject.SetActive(false);
             Debug.Log("crush terminé (enfin)");
+            
+            AskForCrushNameClientRpc();
         }
+    }
+
+    [ClientRpc]
+    public void AskForCrushNameClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().ShowCrushName();
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)
@@ -208,7 +219,7 @@ public class GameManagerNetwork : NetworkBehaviour
     [ClientRpc]
     public void SendVipToClientRpc()
     {
-        Debug.Log("fonction lancée");
+        Debug.Log("fonction vip lancée");
         if (gameObject.GetComponent<GameManager>().myNumberAsPlayer == 1)
         {
             gameObject.GetComponent<GameManager>().myPlayer.isVip = true;
