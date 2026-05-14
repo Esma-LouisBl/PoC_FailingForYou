@@ -144,11 +144,6 @@ public class PlayerNetwork : NetworkBehaviour
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
         readyToCreateCrush = true;
     }
-    
-    public void ShowStartCrushButton()
-    {
-        // startCrushButton.SetActive(true);
-    }
 
     [ServerRpc]
     public void CheckVipServerRpc()
