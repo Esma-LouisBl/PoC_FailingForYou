@@ -156,4 +156,11 @@ public class PlayerNetwork : NetworkBehaviour
     {
         gameManagerNetwork.EverybodyReadyToCreateCrush(this);
     }
+    
+    [ServerRpc]
+    public void ShowMiniGameServerRpc() //3ème fonction MG Launch
+    {
+        gameManagerNetwork.ShowMiniGame();
+        Debug.Log("fonction 3");
+    }
 }

@@ -245,7 +245,21 @@ public class GameManagerNetwork : NetworkBehaviour
             int r = Random.Range(0, crushNamePropositions.Count);
             crushName = crushNamePropositions[r];
             crushNameUI.text = crushName;
+            InitializeMiniGameClientRpc();  //Lancement de la 1ère fonction pour launch le minigame
         }
+    }
+
+    [ClientRpc]
+    public void InitializeMiniGameClientRpc()   //1ère fonction MG Launch
+    {
+        gameObject.GetComponent<GameManager>().AskPlayerToShowServerMiniGame();
+        Debug.Log("fonction 1");
+    }
+
+    public void ShowMiniGame()  //4ème fonction MG Launch
+    {
+        gameObject.GetComponent<GameManager>().ShowMiniGameServer();
+        Debug.Log("fonction 4");
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class GameManager : NetworkBehaviour
 {
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI;
+    public GameObject miniGameServerUI, miniGamePlayerUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
@@ -162,6 +163,20 @@ public class GameManager : NetworkBehaviour
     {
         waitingUI.SetActive(true);
         playerCrushNameUI.SetActive(false);
+    }
+
+    public void ShowMiniGameServer() //5ème fonction MG Launch
+    {
+        miniGameServerUI.SetActive(true);
+        Debug.Log("fonction 5");
+    }
+
+    public void AskPlayerToShowServerMiniGame() //2ème fonction MG Launch
+    {
+        myPlayer.ShowMiniGameServerRpc();
+        miniGamePlayerUI.SetActive(true);
+        waitingUI.SetActive(false);
+        Debug.Log("fonction 2");
     }
 
     private IEnumerator WaitBeforeAction()
