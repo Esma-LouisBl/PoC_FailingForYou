@@ -13,23 +13,31 @@ public class QRCodeManager : MonoBehaviour
     [SerializeField]
     private AspectRatioFitter _aspectRatioFitter;
     [SerializeField]
-    private TextMeshProUGUI _textOut;
-    [SerializeField]
     private RectTransform _scanZone;
+    [SerializeField]
+    private ServerManager _serverManager;
     
     private Texture2D _storeEncodedTexture;
     private bool _isCamAvailable;
     private WebCamTexture _cameraTexture;
-    
-    void Start()
+
+    public string codeScanned;
+
+    public void InitCamera()
+    {
+        SetUpCamera();
+    }
+
+    public void InitQRCode()
     {
         _storeEncodedTexture  = new Texture2D(256, 256);
-        SetUpCamera();
+        EncodeTextToQRCode(_serverManager.codeForQR);
     }
 
     void Update()
     {
         UpdateCameraRender();
+        Scan();
     }
 
     private Color32[] Encode(string textForEncoding, int width, int height)
@@ -46,14 +54,14 @@ public class QRCodeManager : MonoBehaviour
         return writer.Write(textForEncoding);
     }
 
-    public void OnClickEncode()
+    public void OnReceiveEncode(string textToEncode)
     {
-        EncodeTextToQRCode();
+        EncodeTextToQRCode(textToEncode);
     }
 
-    private void EncodeTextToQRCode()
+    private void EncodeTextToQRCode(string textForEncoding = "")
     {
-        string textWrite = string.IsNullOrEmpty(_textInputField.text) ? "You should write something" : _textInputField.text;
+        string textWrite = string.IsNullOrEmpty(textForEncoding) ? "You should write something" : textForEncoding;
         
         Color32[] _convertPixelToTexture = Encode(textWrite, _storeEncodedTexture.width, _storeEncodedTexture.height);
         _storeEncodedTexture.SetPixels32(_convertPixelToTexture);
@@ -98,11 +106,6 @@ public class QRCodeManager : MonoBehaviour
         _rawImageBackground.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
     }
 
-    public void OnClickScan()
-    {
-        Scan();
-    }
-
     private void Scan()
     {
         try
@@ -111,16 +114,13 @@ public class QRCodeManager : MonoBehaviour
             Result result = barcodeReader.Decode(_cameraTexture.GetPixels32(), _cameraTexture.width, _cameraTexture.height);
             if (result != null)
             {
-                _textOut.text = result.Text;
-            }
-            else
-            {
-                _textOut.text = "Failed to read QR code";
+                codeScanned = result.Text;
+                _serverManager.StartClient(true);
             }
         }
         catch
         {
-            _textOut.text = "Failed to try";
+            return;
         }
     }
 }

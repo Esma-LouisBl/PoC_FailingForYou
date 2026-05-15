@@ -36,6 +36,7 @@ public class GameManager : NetworkBehaviour
         {
             connectionUI.SetActive(false);
             serverUI.SetActive(true);
+            gameObject.GetComponent<QRCodeManager>().InitQRCode();
         }
     }
 
