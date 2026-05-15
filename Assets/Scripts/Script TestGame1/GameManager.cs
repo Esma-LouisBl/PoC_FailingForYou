@@ -192,10 +192,12 @@ public class GameManager : NetworkBehaviour
         miniGamePlayerUI.SetActive(false);
     }
 
-    public void InitializeVotes()
+    public void InitializeVotes()   //Appelée par le serveur quand tout le monde a soumis sa réponse
     {
         miniGameServerUI.SetActive(false);
         votingServerUI.SetActive(true);
+        
+        questionManager.PrintWinner("Louis le gros bg");
     }
 
     private IEnumerator WaitBeforeAction()
