@@ -269,24 +269,57 @@ public class GameManagerNetwork : NetworkBehaviour
         if (player == playerObjects[0].playerNetwork)
         {
             answer1 = answer;
+            gameObject.GetComponent<GameManager>().questionManager.answer1TMP.text = answer1;
         }
-        else if (player == playerObjects[1].playerNetwork)
+        Debug.Log(playerObjects.Count.ToString());
+
+        if (playerObjects.Count > 1)
         {
-            answer2 = answer;
-        }
-        else if (player == playerObjects[2].playerNetwork)
-        {
-            answer3 = answer;
-        }
-        else if (player == playerObjects[3].playerNetwork)
-        {
-            answer4 = answer;
+            if (player == playerObjects[1].playerNetwork)
+            {
+                answer2 = answer;
+                gameObject.GetComponent<GameManager>().questionManager.answer2TMP.text = answer2;
+            }
+
+            if (playerObjects.Count > 2)
+            {
+                if (player == playerObjects[2].playerNetwork)
+                {
+                    answer3 = answer;
+                    gameObject.GetComponent<GameManager>().questionManager.answer3TMP.text = answer3;
+                }
+
+                if (playerObjects.Count == 4)
+                {
+                    if (player == playerObjects[3].playerNetwork)
+                    {
+                        answer4 = answer;
+                        gameObject.GetComponent<GameManager>().questionManager.answer4TMP.text = answer4;
+                    }
+                }
+            }
         }
 
         collectedAnswers++;
         if (collectedAnswers == playerObjects.Count)
         {
             collectedAnswers = 0;
+            
+            gameObject.GetComponent<GameManager>().questionManager.chara1.sprite = playerObjects[0].playerSprite;
+            
+            if (playerObjects.Count > 1)
+            {
+                gameObject.GetComponent<GameManager>().questionManager.chara2.sprite = playerObjects[1].playerSprite;
+                if (playerObjects.Count > 2)
+                {
+                    gameObject.GetComponent<GameManager>().questionManager.chara3.sprite = playerObjects[2].playerSprite;
+                    if (playerObjects.Count > 3)
+                    {
+                        gameObject.GetComponent<GameManager>().questionManager.chara4.sprite = playerObjects[3].playerSprite;
+                    }
+                }
+            }
+            
             gameObject.GetComponent<GameManager>().InitializeVotes();
         }
     }

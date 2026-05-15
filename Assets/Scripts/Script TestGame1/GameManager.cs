@@ -17,6 +17,7 @@ public class GameManager : NetworkBehaviour
     private GameObject startCrushButton;
     
     public MG_QuestionManager questionManager;
+    private int answerNumber = 1;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -197,7 +198,19 @@ public class GameManager : NetworkBehaviour
         miniGameServerUI.SetActive(false);
         votingServerUI.SetActive(true);
         
-        questionManager.PrintWinner("Louis le gros bg");
+        // questionManager.PrintWinner("Louis le gros bg");
+        StartCoroutine(WaitToShowAnswer());
+    }
+
+    private IEnumerator WaitToShowAnswer()
+    {
+        questionManager.ShowAnswer(answerNumber);
+        yield return new WaitForSeconds(5);
+        if (answerNumber < 4)
+        {
+            answerNumber++;
+            StartCoroutine(WaitToShowAnswer());
+        }
     }
 
     private IEnumerator WaitBeforeAction()

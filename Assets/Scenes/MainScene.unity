@@ -14894,6 +14894,14 @@ MonoBehaviour:
   questionTMP: {fileID: 6435018}
   aspectTMP: {fileID: 238804646}
   winnerTMP: {fileID: 929178591}
+  answer1TMP: {fileID: 904954552}
+  answer2TMP: {fileID: 1796714010}
+  answer3TMP: {fileID: 635131015}
+  answer4TMP: {fileID: 131271368}
+  chara1: {fileID: 698013148}
+  chara2: {fileID: 1257277459}
+  chara3: {fileID: 1955401591}
+  chara4: {fileID: 1462684952}
   questionsList:
   - "Vous \xEAtes allong\xE9 sur la plage et un enfant vous jette du sable dessus,
     que lui dites-vous ?"
