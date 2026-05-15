@@ -7,7 +7,7 @@ using Unity.Netcode;
 
 public class GameManager : NetworkBehaviour
 {
-    public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI, isSabotageUI;
+    public GameObject playerUI, serverUI, connectionUI, crushUI, playerNameUI, playerCharacterUI, isSabotageUI, qrCodeUI;
     public TextMeshProUGUI myNumberAsPlayerText;
 
     public NetworkVariable<int> numberOfPlayers;
@@ -27,6 +27,7 @@ public class GameManager : NetworkBehaviour
             //numberOfPlayers.Value++;
             //myNumberAsPlayer = numberOfPlayers.Value;
             //myNumberAsPlayerText.text = myNumberAsPlayer.ToString();
+            qrCodeUI.SetActive(false);
         }
     }
     

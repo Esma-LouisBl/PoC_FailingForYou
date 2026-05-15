@@ -10421,6 +10421,7 @@ MonoBehaviour:
   playerNameUI: {fileID: 918525683}
   playerCharacterUI: {fileID: 1416906762}
   isSabotageUI: {fileID: 1192550939}
+  qrCodeUI: {fileID: 2077188509}
   myNumberAsPlayerText: {fileID: 470039883}
   numberOfPlayers:
     UpdateTraits:
