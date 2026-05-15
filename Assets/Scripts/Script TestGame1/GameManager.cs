@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameManager : NetworkBehaviour
 {
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI;
-    public GameObject miniGameServerUI, miniGamePlayerUI;
+    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
@@ -170,7 +170,6 @@ public class GameManager : NetworkBehaviour
     public void ShowMiniGameServer() //5ème fonction MG Launch
     {
         miniGameServerUI.SetActive(true);
-        Debug.Log("fonction 5");
         
         questionManager.ChooseQuestion();
     }
@@ -180,7 +179,23 @@ public class GameManager : NetworkBehaviour
         myPlayer.ShowMiniGameServerRpc();
         miniGamePlayerUI.SetActive(true);
         waitingUI.SetActive(false);
-        Debug.Log("fonction 2");
+    }
+
+    public void PlayerSentAnswer(string answer) //Appelée par QuestionManager quand bouton cliqué
+    {
+        HideMiniGamePlayer();
+        myPlayer.SendAnswerServerRpc(answer);
+    }
+    public void HideMiniGamePlayer()
+    {
+        waitingUI.SetActive(true);
+        miniGamePlayerUI.SetActive(false);
+    }
+
+    public void InitializeVotes()
+    {
+        miniGameServerUI.SetActive(false);
+        votingServerUI.SetActive(true);
     }
 
     private IEnumerator WaitBeforeAction()

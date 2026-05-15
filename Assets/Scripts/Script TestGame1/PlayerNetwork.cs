@@ -105,6 +105,12 @@ public class PlayerNetwork : NetworkBehaviour
         gameManagerNetwork.ReceiveNameProposition(enteredName);
     }
 
+    [ServerRpc]
+    public void SendAnswerServerRpc(string answer)
+    {
+        gameManagerNetwork.ReceiveAnswer(this, answer);
+    }
+
     private IEnumerator InitWithDelay()
     {
         yield return new WaitForSeconds(0.02f);
@@ -161,6 +167,5 @@ public class PlayerNetwork : NetworkBehaviour
     public void ShowMiniGameServerRpc() //3ème fonction MG Launch
     {
         gameManagerNetwork.ShowMiniGame();
-        Debug.Log("fonction 3");
     }
 }

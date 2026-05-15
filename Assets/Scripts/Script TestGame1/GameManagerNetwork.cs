@@ -53,6 +53,10 @@ public class GameManagerNetwork : NetworkBehaviour
     [SerializeField]
     private List<Image> spriteSlots = new List<Image>();
     
+    //RELATIVE TO MINIGAME
+    public string answer1, answer2, answer3, answer4;
+    public int vote1, vote2, vote3, vote4, collectedAnswers;
+    
     public void RegisterPlayer(PlayerNetwork player)
     {
         if (IsServer)
@@ -253,13 +257,38 @@ public class GameManagerNetwork : NetworkBehaviour
     public void InitializeMiniGameClientRpc()   //1ère fonction MG Launch
     {
         gameObject.GetComponent<GameManager>().AskPlayerToShowServerMiniGame();
-        Debug.Log("fonction 1");
     }
 
     public void ShowMiniGame()  //4ème fonction MG Launch
     {
         gameObject.GetComponent<GameManager>().ShowMiniGameServer();
-        Debug.Log("fonction 4");
+    }
+
+    public void ReceiveAnswer(PlayerNetwork player, string answer)
+    {
+        if (player == playerObjects[0].playerNetwork)
+        {
+            answer1 = answer;
+        }
+        else if (player == playerObjects[1].playerNetwork)
+        {
+            answer2 = answer;
+        }
+        else if (player == playerObjects[2].playerNetwork)
+        {
+            answer3 = answer;
+        }
+        else if (player == playerObjects[3].playerNetwork)
+        {
+            answer4 = answer;
+        }
+
+        collectedAnswers++;
+        if (collectedAnswers == playerObjects.Count)
+        {
+            collectedAnswers = 0;
+            gameObject.GetComponent<GameManager>().InitializeVotes();
+        }
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)
@@ -270,11 +299,9 @@ public class GameManagerNetwork : NetworkBehaviour
     [ClientRpc]
     public void SendVipToClientRpc()
     {
-        Debug.Log("fonction vip lancée");
         if (gameObject.GetComponent<GameManager>().myNumberAsPlayer == 1)
         {
             gameObject.GetComponent<GameManager>().myPlayer.isVip = true;
-            Debug.Log("passé vip");
         }
     }
     
