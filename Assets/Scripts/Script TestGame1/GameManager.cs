@@ -15,6 +15,8 @@ public class GameManager : NetworkBehaviour
     public TextMeshProUGUI myNumberAsPlayerText;
     
     private GameObject startCrushButton;
+    
+    public MG_QuestionManager questionManager;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -169,6 +171,8 @@ public class GameManager : NetworkBehaviour
     {
         miniGameServerUI.SetActive(true);
         Debug.Log("fonction 5");
+        
+        questionManager.ChooseQuestion();
     }
 
     public void AskPlayerToShowServerMiniGame() //2ème fonction MG Launch
