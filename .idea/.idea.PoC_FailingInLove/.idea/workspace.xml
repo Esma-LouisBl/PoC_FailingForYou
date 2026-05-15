@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a54b95c1-f4c8-45e8-9f89-579fc869113c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PoC_FailingInLove/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PoC_FailingInLove/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-    </list>
+    <list default="true" id="a54b95c1-f4c8-45e8-9f89-579fc869113c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +138,7 @@
       <workItem from="1777969645173" duration="4216000" />
       <workItem from="1778057577988" duration="1839000" />
       <workItem from="1778570072794" duration="4884000" />
-      <workItem from="1778825435178" duration="6091000" />
+      <workItem from="1778825435178" duration="6781000" />
     </task>
     <servers />
   </component>

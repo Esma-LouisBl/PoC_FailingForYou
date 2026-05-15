@@ -94,7 +94,7 @@ public class QRCodeManager : MonoBehaviour
         float ratio = (float)_cameraTexture.width / (float)_cameraTexture.height;
         _aspectRatioFitter.aspectRatio = ratio;
         
-        int orientation = -_cameraTexture.videoRotationAngle;
+        int orientation = _cameraTexture.videoRotationAngle;
         _rawImageReceiver.rectTransform.localEulerAngles = new Vector3(0, 0, orientation);
     }
 
