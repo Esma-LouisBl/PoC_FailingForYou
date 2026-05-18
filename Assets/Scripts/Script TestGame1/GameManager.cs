@@ -19,6 +19,7 @@ public class GameManager : NetworkBehaviour
     public MG_QuestionManager questionManager;
     private int answerNumber = 1;
     public int totalAnswers;
+    public GameObject voteButton1, voteButton2, voteButton3, voteButton4;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -225,9 +226,42 @@ public class GameManager : NetworkBehaviour
 
     public void PlayerCanVotePhase2()   //Côté client
     {
+        Debug.Log("juste pour checker les totalAnswers du GM");
+        Debug.Log(totalAnswers);
+        if (totalAnswers > 2)
+        {
+            voteButton3.SetActive(true);
+            if (totalAnswers == 4)
+            {
+                voteButton4.SetActive(true);
+            }
+        }
+
+        switch (myNumberAsPlayer)
+        {
+            case 1:
+                voteButton1.GetComponent<Button>().interactable = false;
+                break;
+            case 2:
+                voteButton2.GetComponent<Button>().interactable = false;
+                break;
+            case 3:
+                voteButton3.GetComponent<Button>().interactable = false;
+                break;
+            case 4:
+                voteButton4.GetComponent<Button>().interactable = false;
+                break;
+        }  //À ne pas utiliser dans le jeu final vu que si l'ordre des réponses ne change pas, on sait de qui elles viennent
         votingPlayerUI.SetActive(true);
         waitingUI.SetActive(false);
-        Debug.Log("bon");
+    }
+
+    
+    public void HasVoted(int answerVotedNumber)
+    {
+        waitingUI.SetActive(true);
+        votingPlayerUI.SetActive(false);
+        myPlayer.HasVotedServerRpc(answerVotedNumber);
     }
 
     private IEnumerator WaitBeforeAction()

@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManagerNetwork : NetworkBehaviour
 {
@@ -56,6 +58,7 @@ public class GameManagerNetwork : NetworkBehaviour
     //RELATIVE TO MINIGAME
     public string answer1, answer2, answer3, answer4;
     public int vote1, vote2, vote3, vote4, collectedAnswers;
+    public int numberOfVotes;
     
     public void RegisterPlayer(PlayerNetwork player)
     {
@@ -264,6 +267,13 @@ public class GameManagerNetwork : NetworkBehaviour
     public void ShowMiniGame()  //4ème fonction MG Launch
     {
         gameObject.GetComponent<GameManager>().ShowMiniGameServer();
+        
+        //J'en profite pour réinitialiser tout ça
+        vote1 = 0;
+        vote2 = 0;
+        vote3 = 0;
+        vote4 = 0;
+        numberOfVotes = 0;
     }
 
     public void ReceiveAnswer(PlayerNetwork player, string answer)
@@ -273,6 +283,8 @@ public class GameManagerNetwork : NetworkBehaviour
             answer1 = answer;
             gameObject.GetComponent<GameManager>().questionManager.answer1TMP.text = answer1;
         }
+
+        Debug.Log("nombre de joueurs :");
         Debug.Log(playerObjects.Count.ToString());
 
         if (playerObjects.Count > 1)
@@ -307,20 +319,20 @@ public class GameManagerNetwork : NetworkBehaviour
         {
             collectedAnswers = 0;
             
-            gameObject.GetComponent<GameManager>().questionManager.chara1.sprite = playerObjects[0].playerSprite;
-            
-            if (playerObjects.Count > 1)
-            {
-                gameObject.GetComponent<GameManager>().questionManager.chara2.sprite = playerObjects[1].playerSprite;
-                if (playerObjects.Count > 2)
-                {
-                    gameObject.GetComponent<GameManager>().questionManager.chara3.sprite = playerObjects[2].playerSprite;
-                    if (playerObjects.Count > 3)
-                    {
-                        gameObject.GetComponent<GameManager>().questionManager.chara4.sprite = playerObjects[3].playerSprite;
-                    }
-                }
-            }
+            // gameObject.GetComponent<GameManager>().questionManager.chara1.sprite = playerObjects[0].playerSprite;
+            //
+            // if (playerObjects.Count > 1)
+            // {
+            //     gameObject.GetComponent<GameManager>().questionManager.chara2.sprite = playerObjects[1].playerSprite;
+            //     if (playerObjects.Count > 2)
+            //     {
+            //         gameObject.GetComponent<GameManager>().questionManager.chara3.sprite = playerObjects[2].playerSprite;
+            //         if (playerObjects.Count > 3)
+            //         {
+            //             gameObject.GetComponent<GameManager>().questionManager.chara4.sprite = playerObjects[3].playerSprite;
+            //         }
+            //     }
+            // }
             
             gameObject.GetComponent<GameManager>().InitializeVotes();
         }
@@ -330,6 +342,48 @@ public class GameManagerNetwork : NetworkBehaviour
     public void VotingPhaseClientRpc()
     {
         gameObject.GetComponent<GameManager>().PlayerCanVotePhase2();
+    }
+
+    public void ReceiveVote(int voteNumber)
+    {
+        switch (voteNumber)
+        {
+            case 1:
+                vote1++;
+                break;
+            case 2:
+                vote2++;
+                break;
+            case 3:
+                vote3++;
+                break;
+            case 4:
+                vote4++;
+                break;
+        }
+
+        numberOfVotes++;
+        if (numberOfVotes == playerObjects.Count)
+        {
+            string winner = playerObjects[0].playerName;
+            if (vote1 > vote2 && vote1 > vote3 && vote1 > vote4)
+            {
+                winner = playerObjects[0].playerName;
+            }
+            else if (vote2 > vote1 && vote2 > vote3 && vote2 > vote4)
+            {
+                winner = playerObjects[1].playerName;
+            }
+            else if (vote3 > vote1 && vote3 > vote2 && vote3 > vote4)
+            {
+                winner = playerObjects[2].playerName;
+            }
+            else
+            {
+                winner = playerObjects[3].playerName;
+            }
+            gameObject.GetComponent<GameManager>().questionManager.PrintWinner(winner);
+        }
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)

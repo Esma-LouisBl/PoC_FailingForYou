@@ -168,4 +168,10 @@ public class PlayerNetwork : NetworkBehaviour
     {
         gameManagerNetwork.ShowMiniGame();
     }
+
+    [ServerRpc]
+    public void HasVotedServerRpc(int answerVoteNumber)
+    {
+        gameManagerNetwork.ReceiveVote(answerVoteNumber);
+    }
 }
