@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,8 +15,33 @@ public class GameManagerNetwork : NetworkBehaviour
     
     public List<PlayerScriptableObject> playerObjects;
     public List<Sprite> allPlayerSprites;
+    
+    
+    //RELATIVE TO CRUSH CREATION
+    public List<Sprite> allCrushHairSprites;
+    public List<Sprite> allCrushFacesSprites;
+    public List<Sprite> allCrushAccessoriesSprites;
+    public List<Sprite> allCrushClothesSprites;
+    
+    public Sprite crushHair;
+    public Sprite crushFace;
+    public Sprite crushAccessory;
+    public Sprite crushClothes;
 
-    public CrushCreation crushManager;
+    public Image crushHairSlot;
+    public Image crushFaceSlot;
+    public Image crushAccessorySlot;
+    public Image crushClothesSlot;
+
+    public Image crushCurtain;
+    
+    public int crushPartsChosen;
+
+    public List<string> crushNamePropositions;
+    public string crushName;
+    public TextMeshProUGUI crushNameUI;
+
+    // public CrushCreation crushManager;
 
     private bool readyToShowCrush;
     
@@ -24,6 +50,15 @@ public class GameManagerNetwork : NetworkBehaviour
     private Vector3 jumpVector = new Vector3(0, 2f, 0);
     [SerializeField]
     private List<TextMeshProUGUI> joinSlots = new List<TextMeshProUGUI>();
+    [SerializeField]
+    private List<TextMeshProUGUI> nameSlots = new List<TextMeshProUGUI>();
+    [SerializeField]
+    private List<Image> spriteSlots = new List<Image>();
+    
+    //RELATIVE TO MINIGAME
+    public string answer1, answer2, answer3, answer4;
+    public int vote1, vote2, vote3, vote4, collectedAnswers;
+    public int numberOfVotes;
     
     public void RegisterPlayer(PlayerNetwork player)
     {
@@ -65,37 +100,37 @@ public class GameManagerNetwork : NetworkBehaviour
                     joinSlots[numberOfPlayers.Value-1].fontSize = 20;
                     if (players.Count > 1 && readyToShowCrush)
                     {
-                        gameObject.GetComponent<GameManager>().ShowCrush();
+                        gameObject.GetComponent<GameManager>().ShowCrushPart2();
                         FindFirstObjectByType<SpawnerBehavior>().numberOfPlayers = players.Count;
                     }
                 }
                 break;
             
             //Relative to Crush Creation
-            case 4:
-                crushManager.ChangeHair(true);
-                break;
-            case 5:
-                crushManager.ChangeHair(false);
-                break;
-            case 6:
-                crushManager.ChangeFace(true);
-                break;
-            case 7:
-                crushManager.ChangeFace(false);
-                break;
-            case 8:
-                crushManager.ChangeBody(true);
-                break;
-            case 9:
-                crushManager.ChangeBody(false);
-                break;
-            case 10:
-                crushManager.ChangeAccessories(true);
-                break;
-            case 11:
-                crushManager.ChangeAccessories(false);
-                break;
+            // case 4:
+            //     crushManager.ChangeHair(true);
+            //     break;
+            // case 5:
+            //     crushManager.ChangeHair(false);
+            //     break;
+            // case 6:
+            //     crushManager.ChangeFace(true);
+            //     break;
+            // case 7:
+            //     crushManager.ChangeFace(false);
+            //     break;
+            // case 8:
+            //     crushManager.ChangeBody(true);
+            //     break;
+            // case 9:
+            //     crushManager.ChangeBody(false);
+            //     break;
+            // case 10:
+            //     crushManager.ChangeAccessories(true);
+            //     break;
+            // case 11:
+            //     crushManager.ChangeAccessories(false);
+            //     break;
             
             //Relative to Player ScriptableObject
             case 12:
@@ -125,6 +160,7 @@ public class GameManagerNetwork : NetworkBehaviour
             if (playerScriptableObject.playerNetwork == player)
             {
                 playerScriptableObject.playerName = pName;
+                nameSlots[playerScriptableObject.playerId].text = pName;
             }
         }
     }
@@ -133,10 +169,238 @@ public class GameManagerNetwork : NetworkBehaviour
     {
         foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
         {
-            if (playerScriptableObject.playerNetwork == player)
+            if (playerScriptableObject.playerNetwork == player)     //Affichage du sprite + retire le texte
             {
                 playerScriptableObject.playerSprite = allPlayerSprites[sprite-1];
+                spriteSlots[playerScriptableObject.playerId].enabled = true;
+                spriteSlots[playerScriptableObject.playerId].sprite = playerScriptableObject.playerSprite;
+                joinSlots[playerScriptableObject.playerId].text = "";
             }
+        }
+    }
+
+    public void EverybodyReadyToCreateCrush(PlayerNetwork player)   //On vérifie si tout le monde a un nom et un avatar
+    {
+        foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
+        {
+            if (!playerScriptableObject.playerNetwork.readyToCreateCrush)
+            {
+                return;
+            }
+        }
+
+        player.everybodyReady = true;
+        ActualizeEverybodyReadyClientRpc();
+        
+        //On en profite pour donner le nombre de joueurs au GameManager
+        gameObject.GetComponent<GameManager>().totalAnswers = playerObjects.Count;
+    }
+
+    [ClientRpc]
+    public void ActualizeEverybodyReadyClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().myPlayer.everybodyReady = true;
+    }
+    public void ReceiveCrush(PlayerNetwork player, int sprite)
+    {
+        if (sprite <= 6)
+        {
+            crushHair = allCrushHairSprites[sprite-1];
+        }
+        else if (sprite <= 12)
+        {
+            crushFace = allCrushFacesSprites[sprite - 7];
+        }
+        else if (sprite <= 18)
+        {
+            crushAccessory = allCrushAccessoriesSprites[sprite - 13];
+        }
+        else
+        {
+            crushClothes = allCrushClothesSprites[sprite - 19];
+        }
+
+        crushPartsChosen++;     //On incrémente ce nombre pour vérifier si tous les joueurs ont choisi leur partie
+
+        if (crushPartsChosen == playerObjects.Count)
+        {
+            crushHairSlot.sprite = crushHair;
+            crushFaceSlot.sprite = crushFace;
+            crushAccessorySlot.sprite = crushAccessory;
+            crushClothesSlot.sprite = crushClothes;
+            crushCurtain.gameObject.SetActive(false);
+            
+            AskForCrushNameClientRpc();
+        }
+    }
+
+    [ClientRpc]
+    public void ShowCrushClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().ShowCrushPart2();
+    }
+
+    [ClientRpc]
+    public void AskForCrushNameClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().ShowCrushName();
+    }
+
+    public void ReceiveNameProposition(string enteredName)
+    {
+        crushNamePropositions.Add(enteredName);
+        if (crushNamePropositions.Count == playerObjects.Count)
+        {
+            int r = Random.Range(0, crushNamePropositions.Count);
+            crushName = crushNamePropositions[r];
+            crushNameUI.text = crushName;
+            InitializeMiniGameClientRpc();  //Lancement de la 1ère fonction pour launch le minigame
+        }
+        
+    }
+
+    [ClientRpc]
+    public void InitializeMiniGameClientRpc()   //1ère fonction MG Launch
+    {
+        gameObject.GetComponent<GameManager>().AskPlayerToShowServerMiniGame();
+        
+        //Actualisation du nombre de players pour le GameManager (côté client)
+        gameObject.GetComponent<GameManager>().UpdateTotalAnswers(playerObjects.Count);
+    }
+
+    public void ShowMiniGame()  //4ème fonction MG Launch
+    {
+        gameObject.GetComponent<GameManager>().ShowMiniGameServer();
+        
+        //J'en profite pour réinitialiser tout ça
+        vote1 = 0;
+        vote2 = 0;
+        vote3 = 0;
+        vote4 = 0;
+        numberOfVotes = 0;
+    }
+
+    public void ReceiveAnswer(PlayerNetwork player, string answer)
+    {
+        if (player == playerObjects[0].playerNetwork)
+        {
+            answer1 = answer;
+            gameObject.GetComponent<GameManager>().questionManager.answer1TMP.text = answer1;
+        }
+
+        Debug.Log("nombre de joueurs :");
+        Debug.Log(playerObjects.Count.ToString());
+
+        if (playerObjects.Count > 1)
+        {
+            if (player == playerObjects[1].playerNetwork)
+            {
+                answer2 = answer;
+                gameObject.GetComponent<GameManager>().questionManager.answer2TMP.text = answer2;
+            }
+
+            if (playerObjects.Count > 2)
+            {
+                if (player == playerObjects[2].playerNetwork)
+                {
+                    answer3 = answer;
+                    gameObject.GetComponent<GameManager>().questionManager.answer3TMP.text = answer3;
+                }
+
+                if (playerObjects.Count == 4)
+                {
+                    if (player == playerObjects[3].playerNetwork)
+                    {
+                        answer4 = answer;
+                        gameObject.GetComponent<GameManager>().questionManager.answer4TMP.text = answer4;
+                    }
+                }
+            }
+        }
+
+        collectedAnswers++;
+        if (collectedAnswers == playerObjects.Count)
+        {
+            collectedAnswers = 0;
+            
+            // gameObject.GetComponent<GameManager>().questionManager.chara1.sprite = playerObjects[0].playerSprite;
+            //
+            // if (playerObjects.Count > 1)
+            // {
+            //     gameObject.GetComponent<GameManager>().questionManager.chara2.sprite = playerObjects[1].playerSprite;
+            //     if (playerObjects.Count > 2)
+            //     {
+            //         gameObject.GetComponent<GameManager>().questionManager.chara3.sprite = playerObjects[2].playerSprite;
+            //         if (playerObjects.Count > 3)
+            //         {
+            //             gameObject.GetComponent<GameManager>().questionManager.chara4.sprite = playerObjects[3].playerSprite;
+            //         }
+            //     }
+            // }
+            
+            gameObject.GetComponent<GameManager>().InitializeVotes();
+        }
+    }
+
+    [ClientRpc]
+    public void VotingPhaseClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().PlayerCanVotePhase2();
+    }
+
+    public void ReceiveVote(int voteNumber)
+    {
+        switch (voteNumber)
+        {
+            case 1:
+                vote1++;
+                break;
+            case 2:
+                vote2++;
+                break;
+            case 3:
+                vote3++;
+                break;
+            case 4:
+                vote4++;
+                break;
+        }
+
+        numberOfVotes++;
+        if (numberOfVotes == playerObjects.Count)
+        {
+            string winner = playerObjects[0].playerName;
+            if (vote1 > vote2 && vote1 > vote3 && vote1 > vote4)
+            {
+                winner = playerObjects[0].playerName;
+            }
+            else if (vote2 > vote1 && vote2 > vote3 && vote2 > vote4)
+            {
+                winner = playerObjects[1].playerName;
+            }
+            else if (vote3 > vote1 && vote3 > vote2 && vote3 > vote4)
+            {
+                winner = playerObjects[2].playerName;
+            }
+            else
+            {
+                winner = playerObjects[3].playerName;
+            }
+            gameObject.GetComponent<GameManager>().questionManager.PrintWinner(winner);
+        }
+    }
+
+    public void ReceiveCheckVip(PlayerNetwork player)
+    {
+        SendVipToClientRpc();
+    }
+
+    [ClientRpc]
+    public void SendVipToClientRpc()
+    {
+        if (gameObject.GetComponent<GameManager>().myNumberAsPlayer == 1)
+        {
+            gameObject.GetComponent<GameManager>().myPlayer.isVip = true;
         }
     }
     

@@ -8,10 +8,13 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class PlayerNetwork : NetworkBehaviour
 {
     public int playerId, playerNumber;
+    public bool isVip, readyToCreateCrush, everybodyReady;
+    
     public GameManagerNetwork gameManagerNetwork;
 
     public GameManager gameManager;
@@ -19,7 +22,8 @@ public class PlayerNetwork : NetworkBehaviour
     public string playerName;
     
     
-    [NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories, canvasSabotage;
+    [NotNull] public GameObject canvasSabotage;
+    //[NotNull] public GameObject canvasJump, canvasHair, canvasFace, canvasBody, canvasAccessories;
 
     public override void OnNetworkSpawn()
     {
@@ -30,6 +34,8 @@ public class PlayerNetwork : NetworkBehaviour
         {
             playerId = OwnerClientId.GetHashCode();
             FindFirstObjectByType<GameManagerNetwork>().RegisterPlayer(this);
+            
+            // startCrushButton.enabled = false;
         }
         StartCoroutine(InitWithDelay());
         if (IsOwner)
@@ -37,40 +43,74 @@ public class PlayerNetwork : NetworkBehaviour
             gameManager.myPlayer = this;
             
             StartCoroutine(GetIdWithDelay());
-            gameManagerNetwork.crushManager.playerRef = this;
+            // gameManagerNetwork.crushManager.playerRef = this;
             gameObject.GetComponent<Renderer>().material.color = Color.red;
-            canvasJump.SetActive(true);
+            //canvasJump.SetActive(true); <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< DISABLED AT MERGE
+            //
+            // startCrushButton = GameObject.FindWithTag("StartCrushButton");
+            // startCrushButton.GetComponent<Button>().interactable = false;
+            // startCrushButton.SetActive(false);
             
             SendInputServerRpc(12); //Update PlayerObjects List
         }
     }
 
-    public void LoadCrushCreation()
-    {
-        if (IsOwner)
-        {
-            switch (playerNumber)
-            {
-                case 1:
-                    canvasHair.SetActive(true);
-                    break;
-                case 2:
-                    canvasFace.SetActive(true);
-                    break;
-                case 3:
-                    canvasBody.SetActive(true);
-                    break;
-                case 4:
-                    canvasAccessories.SetActive(true);
-                    break;
-            }
-        }
-    }
+    // public void LoadCrushCreation()
+    // {
+    //     if (IsOwner)
+    //     {
+    //         switch (playerNumber)
+    //         {
+    //             case 1:
+    //                 canvasHair.SetActive(true);
+    //                 break;
+    //             case 2:
+    //                 canvasFace.SetActive(true);
+    //                 break;
+    //             case 3:
+    //                 canvasBody.SetActive(true);
+    //                 break;
+    //             case 4:
+    //                 canvasAccessories.SetActive(true);
+    //                 break;
+    //         }
+    //     }
+    // }
 
     [ServerRpc]
     public void SendInputServerRpc(int input)
     {
         FindFirstObjectByType<GameManagerNetwork>().ReceiveInput(this, input);
+    }
+
+    [ServerRpc]
+    public void ShowCrushUIServerRpc()
+    {
+        gameManager.ShowCrushServerPart2();
+    }
+
+    [ServerRpc]
+    public void ShowCrushUIPlayerServerRpc()
+    {
+        gameManagerNetwork.ShowCrushClientRpc();
+    }
+    
+    [ServerRpc]
+    public void SendCrushServerRpc(int spriteNumber)
+    {
+        gameManagerNetwork.ReceiveCrush(this, spriteNumber);
+    }
+
+    [ServerRpc]
+    public void SendCrushNameServerRpc(string enteredName)
+    {
+        gameManagerNetwork.ReceiveNameProposition(enteredName);
+    }
+
+    [ServerRpc]
+    public void SendAnswerServerRpc(string answer)
+    {
+        gameManagerNetwork.ReceiveAnswer(this, answer);
     }
 
     private IEnumerator InitWithDelay()
@@ -94,10 +134,10 @@ public class PlayerNetwork : NetworkBehaviour
         */
     }
 
-    public void ShowJumpButton()
-    {
-        canvasJump.SetActive(true);
-    }
+    // public void ShowJumpButton()
+    // {
+    //     canvasJump.SetActive(true);
+    // }
 
     [ServerRpc]
     public void SendPlayerNameServerRpc(string enteredName)
@@ -110,6 +150,31 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
+        readyToCreateCrush = true;
+    }
+
+    [ServerRpc]
+    public void CheckVipServerRpc()
+    {
+        gameManagerNetwork.ReceiveCheckVip(this);
+    }
+
+    [ServerRpc]
+    public void AskServerReadyToCreateCrushServerRpc()
+    {
+        gameManagerNetwork.EverybodyReadyToCreateCrush(this);
+    }
+    
+    [ServerRpc]
+    public void ShowMiniGameServerRpc() //3ème fonction MG Launch
+    {
+        gameManagerNetwork.ShowMiniGame();
+    }
+
+    [ServerRpc]
+    public void HasVotedServerRpc(int answerVoteNumber)
+    {
+        gameManagerNetwork.ReceiveVote(answerVoteNumber);
     }
     
     [ServerRpc]
