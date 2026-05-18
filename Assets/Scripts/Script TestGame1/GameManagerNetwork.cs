@@ -288,9 +288,6 @@ public class GameManagerNetwork : NetworkBehaviour
             gameObject.GetComponent<GameManager>().questionManager.answer1TMP.text = answer1;
         }
 
-        Debug.Log("nombre de joueurs :");
-        Debug.Log(playerObjects.Count.ToString());
-
         if (playerObjects.Count > 1)
         {
             if (player == playerObjects[1].playerNetwork)
@@ -382,9 +379,13 @@ public class GameManagerNetwork : NetworkBehaviour
             {
                 winner = playerObjects[2].playerName;
             }
-            else
+            else if (vote4 > vote1 && vote4 > vote2 && vote4 > vote3)
             {
                 winner = playerObjects[3].playerName;
+            }
+            else
+            {
+                //EQUALITY TO HANDLE
             }
             gameObject.GetComponent<GameManager>().questionManager.PrintWinner(winner);
         }
