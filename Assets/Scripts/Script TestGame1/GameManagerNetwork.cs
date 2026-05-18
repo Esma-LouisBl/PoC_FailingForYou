@@ -256,12 +256,16 @@ public class GameManagerNetwork : NetworkBehaviour
             crushNameUI.text = crushName;
             InitializeMiniGameClientRpc();  //Lancement de la 1ère fonction pour launch le minigame
         }
+        
     }
 
     [ClientRpc]
     public void InitializeMiniGameClientRpc()   //1ère fonction MG Launch
     {
         gameObject.GetComponent<GameManager>().AskPlayerToShowServerMiniGame();
+        
+        //Actualisation du nombre de players pour le GameManager (côté client)
+        gameObject.GetComponent<GameManager>().UpdateTotalAnswers(playerObjects.Count);
     }
 
     public void ShowMiniGame()  //4ème fonction MG Launch

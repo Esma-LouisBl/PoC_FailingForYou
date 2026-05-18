@@ -224,6 +224,13 @@ public class GameManager : NetworkBehaviour
         gameObject.GetComponent<GameManagerNetwork>().VotingPhaseClientRpc();
     }
 
+    public void UpdateTotalAnswers(int answers)
+    {
+        Debug.Log("Là on met à jour");
+        // Debug.Log(answers);
+        totalAnswers = gameObject.GetComponent<GameManagerNetwork>().numberOfPlayers.Value;
+        Debug.Log(totalAnswers);
+    }
     public void PlayerCanVotePhase2()   //Côté client
     {
         Debug.Log("juste pour checker les totalAnswers du GM");
