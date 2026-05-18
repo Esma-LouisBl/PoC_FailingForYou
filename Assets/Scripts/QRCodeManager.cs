@@ -9,8 +9,6 @@ public class QRCodeManager : MonoBehaviour
     [SerializeField]
     private RawImage _rawImageReceiver, _rawImageBackground;
     [SerializeField]
-    private TMP_InputField _textInputField;
-    [SerializeField]
     private AspectRatioFitter _aspectRatioFitter;
     [SerializeField]
     private RectTransform _scanZone;
