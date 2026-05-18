@@ -18,6 +18,7 @@ public class GameManager : NetworkBehaviour
     
     public MG_QuestionManager questionManager;
     private int answerNumber = 1;
+    public int totalAnswers;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -206,11 +207,27 @@ public class GameManager : NetworkBehaviour
     {
         questionManager.ShowAnswer(answerNumber);
         yield return new WaitForSeconds(5);
-        if (answerNumber < 4)
+        if (answerNumber < totalAnswers)
         {
             answerNumber++;
             StartCoroutine(WaitToShowAnswer());
         }
+        else
+        {
+            PlayerCanVote();
+        }
+    }
+
+    public void PlayerCanVote()
+    {
+        gameObject.GetComponent<GameManagerNetwork>().VotingPhaseClientRpc();
+    }
+
+    public void PlayerCanVotePhase2()   //Côté client
+    {
+        votingPlayerUI.SetActive(true);
+        waitingUI.SetActive(false);
+        Debug.Log("bon");
     }
 
     private IEnumerator WaitBeforeAction()

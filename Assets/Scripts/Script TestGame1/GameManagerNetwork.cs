@@ -188,13 +188,15 @@ public class GameManagerNetwork : NetworkBehaviour
 
         player.everybodyReady = true;
         ActualizeEverybodyReadyClientRpc();
+        
+        //On en profite pour donner le nombre de joueurs au GameManager
+        gameObject.GetComponent<GameManager>().totalAnswers = playerObjects.Count;
     }
 
     [ClientRpc]
     public void ActualizeEverybodyReadyClientRpc()
     {
         gameObject.GetComponent<GameManager>().myPlayer.everybodyReady = true;
-        Debug.Log("sensé être bon");
     }
     public void ReceiveCrush(PlayerNetwork player, int sprite)
     {
@@ -322,6 +324,12 @@ public class GameManagerNetwork : NetworkBehaviour
             
             gameObject.GetComponent<GameManager>().InitializeVotes();
         }
+    }
+
+    [ClientRpc]
+    public void VotingPhaseClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().PlayerCanVotePhase2();
     }
 
     public void ReceiveCheckVip(PlayerNetwork player)
