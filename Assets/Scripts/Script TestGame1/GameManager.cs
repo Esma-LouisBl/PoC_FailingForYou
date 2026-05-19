@@ -62,14 +62,27 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    public void ShowCrushPart1()
+    public void ShowCrushPart1() //Appelé par le bouton du VIP
     {
+        StartCoroutine(DelayCrushLaunching());
+    }
+
+    private IEnumerator DelayCrushLaunching()
+    {
+        yield return new WaitForSeconds(myNumberAsPlayer);
+        Debug.Log("My number as player "+myNumberAsPlayer);
         myPlayer.ShowCrushUIPlayerServerRpc();
     }
-    public void ShowCrushPart2()
+    public void ShowCrushPart2()    //Exécuté sur chaque téléphone
     {
         int randomNumber = Random.Range(0, crushParts.Count);
         string partToShow =  crushParts[randomNumber];
+
+        foreach (var part in crushParts)
+        {
+            Debug.Log(part);
+        }
+        
         switch (partToShow)
         {
             case "Hair":
