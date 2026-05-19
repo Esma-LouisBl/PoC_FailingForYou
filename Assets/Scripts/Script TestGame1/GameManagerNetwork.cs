@@ -241,6 +241,12 @@ public class GameManagerNetwork : NetworkBehaviour
     }
 
     [ClientRpc]
+    public void RemoveCrushPartClientRpc(string partToRemove)
+    {
+        gameObject.GetComponent<GameManager>().RemoveCrushPart(partToRemove);
+    }
+
+    [ClientRpc]
     public void AskForCrushNameClientRpc()
     {
         gameObject.GetComponent<GameManager>().ShowCrushName();

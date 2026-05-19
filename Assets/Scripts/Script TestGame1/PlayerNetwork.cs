@@ -140,6 +140,12 @@ public class PlayerNetwork : NetworkBehaviour
     // }
 
     [ServerRpc]
+    public void RemoveCrushPartServerRpc(string partToRemove)
+    {
+        gameManagerNetwork.RemoveCrushPartClientRpc(partToRemove);
+    }
+
+    [ServerRpc]
     public void SendPlayerNameServerRpc(string enteredName)
     {
         playerName = enteredName;

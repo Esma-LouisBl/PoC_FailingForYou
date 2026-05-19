@@ -85,7 +85,18 @@ public class GameManager : NetworkBehaviour
                 break;
         }
         playerCrushUI.SetActive(true);
-        crushParts.Remove(partToShow);
+        // crushParts.Remove(partToShow);
+        myPlayer.RemoveCrushPartServerRpc(partToShow);
+    }
+
+    public void RemoveCrushPart(string partToRemove)
+    {
+        Debug.Log("On enlève : " + partToRemove);
+        crushParts.Remove(partToRemove);
+        foreach (var part in crushParts)
+        {
+            Debug.Log(part);
+        }
     }
 
     public void ShowCrushServer()
