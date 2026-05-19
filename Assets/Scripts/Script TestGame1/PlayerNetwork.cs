@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class PlayerNetwork : NetworkBehaviour
 {
     public int playerId, playerNumber;
-    public bool isVip, readyToCreateCrush, everybodyReady;
+    public bool isVip;
     
     public GameManagerNetwork gameManagerNetwork;
 
@@ -52,7 +52,15 @@ public class PlayerNetwork : NetworkBehaviour
             // startCrushButton.SetActive(false);
             
             SendInputServerRpc(12); //Update PlayerObjects List
+            
+            DisableCheckOnConnectionServerRpc(); //Quand un nouveau joueur arrive, on disable le bouton qui lance le crush
         }
+    }
+
+    [ServerRpc]
+    public void DisableCheckOnConnectionServerRpc()
+    {
+        gameManagerNetwork.DisableCheckOnConnection();
     }
 
     // public void LoadCrushCreation()
@@ -156,19 +164,15 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendPlayerCharacterSpriteServerRpc(int characterSprite)
     {
         gameManagerNetwork.ReceiveCharacterSprite(this, characterSprite);
-        readyToCreateCrush = true;
+        
+        // APPELLE ICI FONCTION QUI DIT QUE LE JOUEUR EST PRET POUR LE CRUSH
+        gameManagerNetwork.IncreasePlayersReady();
     }
 
     [ServerRpc]
     public void CheckVipServerRpc()
     {
         gameManagerNetwork.ReceiveCheckVip(this);
-    }
-
-    [ServerRpc]
-    public void AskServerReadyToCreateCrushServerRpc()
-    {
-        gameManagerNetwork.EverybodyReadyToCreateCrush(this);
     }
     
     [ServerRpc]

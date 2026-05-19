@@ -43,7 +43,9 @@ public class GameManagerNetwork : NetworkBehaviour
 
     // public CrushCreation crushManager;
 
-    private bool readyToShowCrush;
+    private bool readyToShowCrush; //on utilise plus ce bool
+
+    public NetworkVariable<int> playersReadyForCrush;
     
     private bool canJump = true;
     private float playerHeight = 0.51f;
@@ -179,28 +181,36 @@ public class GameManagerNetwork : NetworkBehaviour
         }
     }
 
-    public void EverybodyReadyToCreateCrush(PlayerNetwork player)   //On vérifie si tout le monde a un nom et un avatar
+    public void IncreasePlayersReady() //Côté serv
     {
-        foreach (PlayerScriptableObject playerScriptableObject in playerObjects)
+        playersReadyForCrush.Value++;
+        if (playersReadyForCrush.Value == numberOfPlayers.Value)
         {
-            if (!playerScriptableObject.playerNetwork.readyToCreateCrush)
-            {
-                return;
-            }
+            AskToEnableCrushButtonClientRpc();
         }
-
-        player.everybodyReady = true;
-        ActualizeEverybodyReadyClientRpc();
-        
-        //On en profite pour donner le nombre de joueurs au GameManager (côté serv)
-        gameObject.GetComponent<GameManager>().totalAnswers = playerObjects.Count;
+        else
+        {
+            AskToDisableCrushButtonClientRpc();
+        }
     }
 
     [ClientRpc]
-    public void ActualizeEverybodyReadyClientRpc()
+    public void AskToEnableCrushButtonClientRpc()
     {
-        gameObject.GetComponent<GameManager>().myPlayer.everybodyReady = true;
+        gameObject.GetComponent<GameManager>().AllowCrushButton();
     }
+
+    [ClientRpc]
+    public void AskToDisableCrushButtonClientRpc()
+    {
+        gameObject.GetComponent<GameManager>().DisableCrushButton();
+    }
+
+    public void DisableCheckOnConnection()
+    {
+        AskToDisableCrushButtonClientRpc();
+    }
+    
     public void ReceiveCrush(PlayerNetwork player, int sprite)
     {
         if (sprite <= 6)
@@ -232,6 +242,8 @@ public class GameManagerNetwork : NetworkBehaviour
             
             AskForCrushNameClientRpc();
         }
+        //On en profite pour donner le nombre de joueurs au GameManager (côté serv)
+        gameObject.GetComponent<GameManager>().totalAnswers = playerObjects.Count;
     }
 
     [ClientRpc]

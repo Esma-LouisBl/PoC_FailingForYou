@@ -42,7 +42,6 @@ public class GameManager : NetworkBehaviour
             //myNumberAsPlayerText.text = myNumberAsPlayer.ToString();
             qrCodeUI.SetActive(false);
             startCrushButton = GameObject.FindWithTag("StartCrushButton");
-            // startCrushButton.GetComponent<Button>().interactable = false;
             startCrushButton.SetActive(false);
             crushParts.Add("Hair");
             crushParts.Add("Accessories");
@@ -164,22 +163,17 @@ public class GameManager : NetworkBehaviour
         if (myPlayer.isVip)
         {
             startCrushButton.SetActive(true);
-            CheckIfEverybodyReady();
         }
     }
 
-    public void CheckIfEverybodyReady()
+    public void AllowCrushButton()
     {
-        myPlayer.AskServerReadyToCreateCrushServerRpc();
-        if (myPlayer.everybodyReady)
-        {
-            startCrushButton.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            startCrushButton.GetComponent<Button>().interactable = false;
-            StartCoroutine(RecheckAfterTime());
-        }
+        startCrushButton.GetComponent<Button>().interactable = true;
+    }
+
+    public void DisableCrushButton()
+    {
+        startCrushButton.GetComponent<Button>().interactable = false;
     }
 
     public void ShowCrushName()
@@ -299,12 +293,6 @@ public class GameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(1);
         ShowCrushButton();
-    }
-
-    private IEnumerator RecheckAfterTime()  //pas opti du tout, vaudrait mieux relancer la fonction lorsque chaque joueur qui n'est pas vip entre son nom
-    {
-        yield return new WaitForSeconds(1);
-        CheckIfEverybodyReady();
     }
 
 }
