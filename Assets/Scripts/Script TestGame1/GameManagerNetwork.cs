@@ -47,9 +47,9 @@ public class GameManagerNetwork : NetworkBehaviour
 
     public NetworkVariable<int> playersReadyForCrush;
     
-    private bool canJump = true;
-    private float playerHeight = 0.51f;
-    private Vector3 jumpVector = new Vector3(0, 2f, 0);
+    // private bool canJump = true;
+    // private float playerHeight = 0.51f;
+    // private Vector3 jumpVector = new Vector3(0, 2f, 0);
     [SerializeField]
     private List<TextMeshProUGUI> joinSlots = new List<TextMeshProUGUI>();
     [SerializeField]
@@ -58,7 +58,7 @@ public class GameManagerNetwork : NetworkBehaviour
     private List<Image> spriteSlots = new List<Image>();
     
     //RELATIVE TO MINIGAME
-    public string answer1, answer2, answer3, answer4;
+    public string answer1, answer2, answer3, answer4, bestAnswer;
     public int vote1, vote2, vote3, vote4, collectedAnswers;
     public int numberOfVotes;
     
@@ -83,14 +83,14 @@ public class GameManagerNetwork : NetworkBehaviour
                 player.GetComponent<Transform>().position += Vector3.right;
                 break;
             case 2: //Jump
-                StartCoroutine(Jump(player));
+                // StartCoroutine(Jump(player));
                 break;
             case 3: //Init Player
                 if (gameObject.GetComponent<GameManager>().myNumberAsPlayer == 0 && !IsOwner)
                 {
                     gameObject.GetComponent<GameManager>().myNumberAsPlayer = numberOfPlayers.Value;
                 }
-                playerHeight = 0.51f;
+                // playerHeight = 0.51f;
                 player.gameManager.myNumberAsPlayerText.text = "Player : " + player.gameManager.myNumberAsPlayer;
                 player.transform.position = new Vector3(numberOfPlayers.Value+0.2f, 0.5f, 0);
                 player.GetComponentInChildren<TextMeshPro>().text = numberOfPlayers.Value.ToString();
@@ -396,24 +396,53 @@ public class GameManagerNetwork : NetworkBehaviour
             if (vote1 > vote2 && vote1 > vote3 && vote1 > vote4)
             {
                 winner = playerObjects[0].playerName;
+                bestAnswer = playerObjects[0].playerNetwork.lastAnswer;
             }
             else if (vote2 > vote1 && vote2 > vote3 && vote2 > vote4)
             {
                 winner = playerObjects[1].playerName;
+                bestAnswer = playerObjects[1].playerNetwork.lastAnswer;
             }
             else if (vote3 > vote1 && vote3 > vote2 && vote3 > vote4)
             {
                 winner = playerObjects[2].playerName;
+                bestAnswer = playerObjects[2].playerNetwork.lastAnswer;
             }
             else if (vote4 > vote1 && vote4 > vote2 && vote4 > vote3)
             {
                 winner = playerObjects[3].playerName;
+                bestAnswer = playerObjects[3].playerNetwork.lastAnswer;
             }
             else
-            {
-                //EQUALITY TO HANDLE
+            {   // CAS D’ÉGALITÉ ENTRE 2 JOUEURS
+                if (vote1 == vote2)
+                {
+                    gameObject.GetComponent<GameManager>().Tie(playerObjects[0].playerNetwork, playerObjects[1].playerNetwork);
+                }
+                else if (vote1 == vote3)
+                {
+                    gameObject.GetComponent<GameManager>().Tie(playerObjects[0].playerNetwork, playerObjects[2].playerNetwork);
+                }
+                else if (vote1 == vote4)
+                {
+                    gameObject.GetComponent<GameManager>().Tie(playerObjects[0].playerNetwork, playerObjects[3].playerNetwork);
+                }
+                else if (vote2 == vote3)
+                {
+                    gameObject.GetComponent<GameManager>().Tie(playerObjects[1].playerNetwork, playerObjects[2].playerNetwork);
+                }
+                else if (vote2 == vote4)
+                {
+                    gameObject.GetComponent<GameManager>().Tie(playerObjects[1].playerNetwork, playerObjects[3].playerNetwork);
+                }
+                else if (vote3 == vote4)
+                {
+                    gameObject.GetComponent<GameManager>().Tie(playerObjects[2].playerNetwork, playerObjects[3].playerNetwork);
+                }
+                return;
             }
-            gameObject.GetComponent<GameManager>().questionManager.PrintWinner(winner);
+            //CAS DE VICTOIRE TOTALE
+            gameObject.GetComponent<GameManager>().questionManager.PrintWinner(winner, bestAnswer);
         }
     }
 
@@ -459,23 +488,23 @@ public class GameManagerNetwork : NetworkBehaviour
     }
     */
 
-    private IEnumerator Jump(PlayerNetwork player)
-    {
-        if (playerHeight > player.transform.position.y)
-        {
-            canJump = false;
-            for (int i = 0; i < 130; i++)
-            {
-                player.GetComponent<Transform>().position += (jumpVector/100);
-                yield return new WaitForSeconds(0.001f*(i+1)/40);
-            }
-            yield return new WaitForSeconds(0.1f);
-            for (int i = 0; i < 130; i++)
-            {
-                player.GetComponent<Transform>().position -= (jumpVector/100);
-                yield return new WaitForSeconds(0.001f*(100-i+1)/100);
-            }
-            canJump = true;
-        }
-    }
+    // private IEnumerator Jump(PlayerNetwork player)
+    // {
+    //     if (playerHeight > player.transform.position.y)
+    //     {
+    //         canJump = false;
+    //         for (int i = 0; i < 130; i++)
+    //         {
+    //             player.GetComponent<Transform>().position += (jumpVector/100);
+    //             yield return new WaitForSeconds(0.001f*(i+1)/40);
+    //         }
+    //         yield return new WaitForSeconds(0.1f);
+    //         for (int i = 0; i < 130; i++)
+    //         {
+    //             player.GetComponent<Transform>().position -= (jumpVector/100);
+    //             yield return new WaitForSeconds(0.001f*(100-i+1)/100);
+    //         }
+    //         canJump = true;
+    //     }
+    // }
 }

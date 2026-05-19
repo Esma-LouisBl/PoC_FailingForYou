@@ -14,6 +14,9 @@ public class PlayerNetwork : NetworkBehaviour
 {
     public int playerId, playerNumber;
     public bool isVip;
+
+    public int money;
+    public string lastAnswer;
     
     public GameManagerNetwork gameManagerNetwork;
 
@@ -119,6 +122,7 @@ public class PlayerNetwork : NetworkBehaviour
     public void SendAnswerServerRpc(string answer)
     {
         gameManagerNetwork.ReceiveAnswer(this, answer);
+        lastAnswer = answer;
     }
 
     private IEnumerator InitWithDelay()

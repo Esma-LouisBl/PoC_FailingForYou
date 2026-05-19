@@ -10,17 +10,19 @@ public class GameManager : NetworkBehaviour
 {
 
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI, isSabotageUI, qrCodeUI;
-    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI;
+    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
     
     private GameObject startCrushButton;
     
+    //RELATIVE TO MINIGAME
     public MG_QuestionManager questionManager;
     private int answerNumber = 1;
     public int totalAnswers;
     public GameObject voteButton1, voteButton2, voteButton3, voteButton4;
+    public TextMeshProUGUI tieText;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -244,15 +246,10 @@ public class GameManager : NetworkBehaviour
 
     public void UpdateTotalAnswers(int answers)
     {
-        Debug.Log("Là on met à jour");
-        // Debug.Log(answers);
         totalAnswers = gameObject.GetComponent<GameManagerNetwork>().numberOfPlayers.Value;
-        Debug.Log(totalAnswers);
     }
     public void PlayerCanVotePhase2()   //Côté client
     {
-        Debug.Log("juste pour checker les totalAnswers du GM");
-        Debug.Log(totalAnswers);
         if (totalAnswers > 2)
         {
             voteButton3.SetActive(true);
@@ -287,6 +284,42 @@ public class GameManager : NetworkBehaviour
         waitingUI.SetActive(true);
         votingPlayerUI.SetActive(false);
         myPlayer.HasVotedServerRpc(answerVotedNumber);
+    }
+
+    public void Tie(PlayerNetwork player1, PlayerNetwork player2)
+    {
+        tieServerUI.SetActive(true);
+        votingServerUI.SetActive(false);
+        
+        //Ajouter un if ici lorsqu'il y aura différentes Tie
+        RandomTie(player1, player2);
+    }
+
+    public void RandomTie(PlayerNetwork player1, PlayerNetwork player2)
+    {
+        int r =  Random.Range(0, 2);
+        if (r == 0)
+        {
+            StartCoroutine(RandomTieUnfolding(player1.playerName, player2.playerName, player1.playerName));
+        }
+        else
+        {
+            StartCoroutine(RandomTieUnfolding(player1.playerName, player2.playerName, player2.playerName));
+        }
+    }
+
+    private IEnumerator RandomTieUnfolding(string name1, string name2, string winnerName)
+    {
+        yield return new WaitForSeconds(2);
+        tieText.text = $"Le gagnant va être tiré au sort entre {name1} et {name2}.";
+        yield return new WaitForSeconds(2);
+        tieText.text = ".";
+        yield return new WaitForSeconds(0.5f);
+        tieText.text = "..";
+        yield return new WaitForSeconds(0.5f);
+        tieText.text = "...";
+        yield return new WaitForSeconds(1);
+        tieText.text = $"{winnerName} a remporté cette manche !";
     }
 
     private IEnumerator WaitBeforeAction()

@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class MG_QuestionManager : MonoBehaviour
 {
     public GameManager gameManager;
-    public TextMeshProUGUI questionTMP, aspectTMP, winnerTMP, answer1TMP, answer2TMP, answer3TMP, answer4TMP;
+    public TextMeshProUGUI questionTMP, aspectTMP, winnerTMP, answer1TMP, answer2TMP, answer3TMP, answer4TMP, answerToIlluminate;
     public Image chara1, chara2, chara3, chara4;
     
     public List<string> questionsList;
@@ -58,30 +58,77 @@ public class MG_QuestionManager : MonoBehaviour
         }
     }
 
-    public void PrintWinner(string winner)
+    public void PrintWinner(string winner, string winnerAnswer)
     {
         winnerTMP.text = "Le gagnant est";
         winnerTMP.enabled = true;
-        StartCoroutine(Suspense(winner));
+        StartCoroutine(Suspense(winner, winnerAnswer));
     }
 
-    private void EndPrintWinner(string winner)
+    private void EndPrintWinner(string winner, string winnerAnswer)
     {
         winnerTMP.text += " " + winner + " !";
+
+        if (winnerAnswer == answer1TMP.text)
+        {
+            answerToIlluminate = answer1TMP;
+        }
+        else if (winnerAnswer == answer2TMP.text)
+        {
+            answerToIlluminate = answer2TMP;
+        }
+        else if (winnerAnswer == answer3TMP.text)
+        {
+            answerToIlluminate = answer3TMP;
+        }
+        else if (winnerAnswer == answer4TMP.text)
+        {
+            answerToIlluminate = answer4TMP;
+        }
+        
+        StartCoroutine(IlluminateWinnerAnswer(answerToIlluminate));
     }
 
-    private IEnumerator Suspense(string winner)
+    private IEnumerator Suspense(string winner, string winnerAnswer)
     {
         yield return new WaitForSeconds(0.6f);
         winnerTMP.text += ".";
         if (coroutineCounter < 2)
         {
             coroutineCounter++;
-            StartCoroutine(Suspense(winner));
+            StartCoroutine(Suspense(winner, winnerAnswer));
         }
         else
         {
-            EndPrintWinner(winner);
+            EndPrintWinner(winner, winnerAnswer);
+        }
+    }
+
+    private IEnumerator IlluminateWinnerAnswer(TextMeshProUGUI answer)
+    {
+        yield return new WaitForSeconds(0.05f);
+        answer.fontSize++;
+        if (answer.fontSize <60)
+        {
+            StartCoroutine(IlluminateWinnerAnswer(answer));
+        }
+        else
+        {
+            StartCoroutine(InIlluminateWinnerAnswer(answer));
+        }
+    }
+
+    private IEnumerator InIlluminateWinnerAnswer(TextMeshProUGUI answer)
+    {
+        yield return new WaitForSeconds(0.05f);
+        answer.fontSize--;
+        if (answer.fontSize < 45)
+        {
+            StartCoroutine(IlluminateWinnerAnswer(answer));
+        }
+        else
+        {
+            StartCoroutine(InIlluminateWinnerAnswer(answer));
         }
     }
 }
