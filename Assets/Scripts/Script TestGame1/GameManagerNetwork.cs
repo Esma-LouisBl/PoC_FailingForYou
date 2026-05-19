@@ -192,7 +192,7 @@ public class GameManagerNetwork : NetworkBehaviour
         player.everybodyReady = true;
         ActualizeEverybodyReadyClientRpc();
         
-        //On en profite pour donner le nombre de joueurs au GameManager
+        //On en profite pour donner le nombre de joueurs au GameManager (côté serv)
         gameObject.GetComponent<GameManager>().totalAnswers = playerObjects.Count;
     }
 
