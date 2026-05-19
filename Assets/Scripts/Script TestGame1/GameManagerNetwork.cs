@@ -260,9 +260,17 @@ public class GameManagerNetwork : NetworkBehaviour
             int r = Random.Range(0, crushNamePropositions.Count);
             crushName = crushNamePropositions[r];
             crushNameUI.text = crushName;
-            InitializeMiniGameClientRpc();  //Lancement de la 1ère fonction pour launch le minigame
+
+            StartCoroutine(WaitToAdmireCrushName());
         }
         
+    }
+
+    private IEnumerator WaitToAdmireCrushName()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        InitializeMiniGameClientRpc(); //Lancement de la 1ère fonction pour launch le minigame
     }
 
     [ClientRpc]

@@ -13,6 +13,7 @@ public class CrushName : MonoBehaviour
         // player = FindFirstObjectByType<PlayerNetwork>();
         // player.SendCrushNameServerRpc(tmp.text);
         // player.gameManager.HideCrushName();
+        
         gameManager = FindFirstObjectByType<GameManager>();
         gameManager.PlayerSendCrushName(tmp.text);
         gameManager.HideCrushName();
