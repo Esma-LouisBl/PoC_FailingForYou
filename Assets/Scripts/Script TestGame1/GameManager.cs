@@ -10,7 +10,7 @@ public class GameManager : NetworkBehaviour
 {
 
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI, isSabotageUI, qrCodeUI;
-    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI, nextMiniGamePlayerUI;
+    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI, tieAccuratePlayerUI, nextMiniGamePlayerUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
@@ -23,7 +23,9 @@ public class GameManager : NetworkBehaviour
     public int totalAnswers;
     public GameObject voteButton1, voteButton2, voteButton3, voteButton4;
     public TextMeshProUGUI tieText;
-    public TMP_InputField answerArea;
+    public TMP_InputField answerArea, accurateAnswerArea;
+    public List<AccurateQuestion> accurateQuestions;
+    public AccurateQuestion currentAccurateQuestion;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -78,7 +80,7 @@ public class GameManager : NetworkBehaviour
     {
         float timeToWait = myNumberAsPlayer;
         timeToWait /= 2.5f;
-        Debug.Log("temps : " + timeToWait);
+        // Debug.Log("temps : " + timeToWait);
         yield return new WaitForSeconds(timeToWait);
         
         int randomNumber = Random.Range(0, crushParts.Count);
@@ -90,7 +92,7 @@ public class GameManager : NetworkBehaviour
 
         foreach (var part in crushParts)
         {
-            Debug.Log(part);
+            // Debug.Log(part);
         }
         
         switch (partToShow)
@@ -226,6 +228,7 @@ public class GameManager : NetworkBehaviour
         miniGamePlayerUI.SetActive(true);
         answerArea.text = "Entrez votre réponse";   //ça joue le rôle d'un placeholder sinon la dernière réponse reste présente dans l'input field
         waitingUI.SetActive(false);
+        tieAccuratePlayerUI.SetActive(false);
     }
 
     public void PlayerSentAnswer(string answer) //Appelée par QuestionManager quand bouton cliqué
@@ -315,10 +318,49 @@ public class GameManager : NetworkBehaviour
         tieServerUI.SetActive(true);
         votingServerUI.SetActive(false);
         
-        //Ajouter un if ici lorsqu'il y aura différentes Tie
-        RandomTie(player1, player2);
+        // 50-50 : soit au pif, soit question qui départage objectivement
+        int r = Random.Range(0, 1);
+        if (r == 0)
+        {
+            RandomTie(player1, player2);
+        }
+        else
+        {
+            AccurateQuestionTie(player1, player2);
+        }
     }
 
+    public void AccurateQuestionTie(PlayerNetwork player1, PlayerNetwork player2)
+    {
+        currentAccurateQuestion = accurateQuestions[Random.Range(0, accurateQuestions.Count)];
+        tieText.text = $"Égalité ! Pour vous départager, répondez à cette question\n(le résultat est un nombre) :\n{currentAccurateQuestion.question}";
+        gameObject.GetComponent<GameManagerNetwork>().InitDisplayAnswersAccurateTie(player1, player2);
+    }
+
+    public void ReceiveAccurateQuestion(int p1, int p2)
+    {
+        if (myNumberAsPlayer == p1+1 || myNumberAsPlayer == p2+1)
+        {
+            tieAccuratePlayerUI.SetActive(true);
+            waitingUI.SetActive(false);
+        }
+    }
+
+    public void ConfirmAccurateAnswer()
+    {
+        waitingUI.SetActive(true);
+        tieAccuratePlayerUI.SetActive(false);
+        myPlayer.SendAccurateAnswerServerRpc(int.Parse(accurateAnswerArea.text));
+        accurateAnswerArea.text = "";
+    }
+
+    public void PublishAccurateWinner(PlayerNetwork winner)
+    {
+        tieText.text =
+            $"Le joueur le plus proche est {winner.playerName} !\nLa réponse exacte est {currentAccurateQuestion.answer}";
+        gameObject.GetComponent<GameManagerNetwork>().AskToShowNextMGButtonClientRpc();
+    }
+    
     public void RandomTie(PlayerNetwork player1, PlayerNetwork player2)
     {
         int r =  Random.Range(0, 2);
@@ -331,6 +373,7 @@ public class GameManager : NetworkBehaviour
             StartCoroutine(RandomTieUnfolding(player1.playerName, player2.playerName, player2.playerName));
         }
     }
+
 
     private IEnumerator RandomTieUnfolding(string name1, string name2, string winnerName)
     {

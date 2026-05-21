@@ -62,6 +62,9 @@ public class GameManagerNetwork : NetworkBehaviour
     public int vote1, vote2, vote3, vote4, collectedAnswers;
     public int numberOfVotes;
     
+    public PlayerNetwork nearestPlayerToAccurate;
+    public int nearestIntToAccurate;
+    
     public void RegisterPlayer(PlayerNetwork player)
     {
         if (IsServer)
@@ -365,6 +368,25 @@ public class GameManagerNetwork : NetworkBehaviour
         }
     }
 
+    public void ReceiveAccurateAnswer(PlayerNetwork player, int answer)
+    {
+        if (collectedAnswers == 0)
+        {
+            collectedAnswers++;
+            nearestPlayerToAccurate = player;
+            nearestIntToAccurate = Mathf.Abs(gameObject.GetComponent<GameManager>().currentAccurateQuestion.answer - answer);
+        }
+        else
+        {
+            collectedAnswers = 0;
+            if (Mathf.Abs(gameObject.GetComponent<GameManager>().currentAccurateQuestion.answer - answer) < nearestIntToAccurate )
+            {
+                nearestPlayerToAccurate = player;
+            }
+            gameObject.GetComponent<GameManager>().PublishAccurateWinner(nearestPlayerToAccurate);
+        }
+    }
+
     [ClientRpc]
     public void VotingPhaseClientRpc()
     {
@@ -444,6 +466,29 @@ public class GameManagerNetwork : NetworkBehaviour
             //CAS DE VICTOIRE TOTALE
             gameObject.GetComponent<GameManager>().questionManager.PrintWinner(winner, bestAnswer);
         }
+    }
+
+    public void InitDisplayAnswersAccurateTie(PlayerNetwork player1, PlayerNetwork player2)
+    {
+        int p1 = 0;
+        int p2 = 0;
+        foreach (PlayerScriptableObject playerObject in playerObjects)
+        {
+            if (playerObject.playerNetwork == player1)
+            {
+                p1 = playerObject.playerId;
+            }
+            else if (playerObject.playerNetwork == player2)
+            {
+                p2 = playerObject.playerId;
+            }
+        }
+        DisplayAnswersAccurateTieClientRpc(p1, p2);
+    }
+    [ClientRpc]
+    public void DisplayAnswersAccurateTieClientRpc(int player1, int player2)
+    {
+        gameObject.GetComponent<GameManager>().ReceiveAccurateQuestion(player1, player2);
     }
 
     [ClientRpc]

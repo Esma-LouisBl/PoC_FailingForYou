@@ -126,9 +126,22 @@ public class PlayerNetwork : NetworkBehaviour
     }
 
     [ServerRpc]
+    public void SendAccurateAnswerServerRpc(int answer)
+    {
+        gameManagerNetwork.ReceiveAccurateAnswer(this, answer);
+        lastAnswer = answer.ToString();
+    }
+
+    [ServerRpc]
     public void RestartMiniGameServerRpc()
     {
         gameManagerNetwork.InitializeMiniGameClientRpc();
+        gameManager.questionManager.answer1TMP.enabled = false;
+        gameManager.questionManager.answer2TMP.enabled = false;
+        gameManager.questionManager.answer3TMP.enabled = false;
+        gameManager.questionManager.answer4TMP.enabled = false;
+        gameManager.questionManager.winnerTMP.text = "";
+        gameManager.questionManager.winnerTMP.enabled = false;
     }
 
     private IEnumerator InitWithDelay()
