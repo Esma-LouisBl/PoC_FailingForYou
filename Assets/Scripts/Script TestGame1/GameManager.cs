@@ -69,15 +69,23 @@ public class GameManager : NetworkBehaviour
         myPlayer.ShowCrushUIPlayerServerRpc();
     }
 
-    private IEnumerator DelayCrushLaunching()
+    // private IEnumerator DelayCrushLaunching()
+    // {
+    //     yield return new WaitForSeconds(myNumberAsPlayer);
+    //     myPlayer.ShowCrushUIPlayerServerRpc();
+    // }
+    public IEnumerator ShowCrushPart2()    //Exécuté sur chaque téléphone
     {
-        yield return new WaitForSeconds(myNumberAsPlayer);
-        Debug.Log("My number as player "+myNumberAsPlayer);
-        myPlayer.ShowCrushUIPlayerServerRpc();
-    }
-    public void ShowCrushPart2()    //Exécuté sur chaque téléphone
-    {
+        float timeToWait = myNumberAsPlayer;
+        timeToWait /= 2.5f;
+        Debug.Log("temps : " + timeToWait);
+        yield return new WaitForSeconds(timeToWait);
+        
         int randomNumber = Random.Range(0, crushParts.Count);
+        // int randomNumber = System.DateTime.Now.Second;
+        // Debug.Log(randomNumber);
+        // randomNumber *= myNumberAsPlayer;
+        // Debug.Log($"Randomnumber = {randomNumber}");
         string partToShow =  crushParts[randomNumber];
 
         foreach (var part in crushParts)
@@ -216,7 +224,7 @@ public class GameManager : NetworkBehaviour
     {
         myPlayer.ShowMiniGameServerRpc();
         miniGamePlayerUI.SetActive(true);
-        answerArea.text = "Entrez votre réponse";
+        answerArea.text = "Entrez votre réponse";   //ça joue le rôle d'un placeholder sinon la dernière réponse reste présente dans l'input field
         waitingUI.SetActive(false);
     }
 
