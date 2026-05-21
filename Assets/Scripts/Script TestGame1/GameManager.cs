@@ -10,7 +10,7 @@ public class GameManager : NetworkBehaviour
 {
 
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI, isSabotageUI, qrCodeUI;
-    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI;
+    public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI, nextMiniGamePlayerUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
@@ -64,7 +64,8 @@ public class GameManager : NetworkBehaviour
 
     public void ShowCrushPart1() //Appelé par le bouton du VIP
     {
-        StartCoroutine(DelayCrushLaunching());
+        // StartCoroutine(DelayCrushLaunching());
+        myPlayer.ShowCrushUIPlayerServerRpc();
     }
 
     private IEnumerator DelayCrushLaunching()
@@ -233,7 +234,6 @@ public class GameManager : NetworkBehaviour
         miniGameServerUI.SetActive(false);
         votingServerUI.SetActive(true);
         
-        // questionManager.PrintWinner("Louis le gros bg");
         StartCoroutine(WaitToShowAnswer());
     }
 
@@ -333,6 +333,19 @@ public class GameManager : NetworkBehaviour
         tieText.text = "...";
         yield return new WaitForSeconds(1);
         tieText.text = $"{winnerName} a remporté cette manche !";
+        
+        gameObject.GetComponent<GameManagerNetwork>().AskToShowNextMGButtonClientRpc();
+    }
+
+    public void ShowNextMGButton()  //Lancée uniquement sur le tel du VIP
+    {
+        nextMiniGamePlayerUI.SetActive(true);
+        waitingUI.SetActive(false);
+    }
+
+    public void ShutDownMiniGame()
+    {
+        waitingUI.SetActive(true);
     }
 
     private IEnumerator WaitBeforeAction()

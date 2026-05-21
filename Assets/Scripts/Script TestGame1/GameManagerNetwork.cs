@@ -446,6 +446,15 @@ public class GameManagerNetwork : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    public void AskToShowNextMGButtonClientRpc()    //Appelée après victoire de MG pour lancer le suivant
+    {
+        if (gameObject.GetComponent<GameManager>().myPlayer.isVip)
+        {
+            gameObject.GetComponent<GameManager>().ShowNextMGButton();
+        }
+    }
+
     public void ReceiveCheckVip(PlayerNetwork player)
     {
         SendVipToClientRpc();

@@ -125,6 +125,12 @@ public class PlayerNetwork : NetworkBehaviour
         lastAnswer = answer;
     }
 
+    [ServerRpc]
+    public void RestartMiniGameServerRpc()
+    {
+        gameManagerNetwork.InitializeMiniGameClientRpc();
+    }
+
     private IEnumerator InitWithDelay()
     {
         yield return new WaitForSeconds(0.02f);
