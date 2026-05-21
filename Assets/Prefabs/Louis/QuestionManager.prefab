@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3822343610464560808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4411281962507315865}
+  - component: {fileID: 4845617122898818544}
+  m_Layer: 0
+  m_Name: QuestionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4411281962507315865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822343610464560808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4845617122898818544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822343610464560808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c207cbb0e5d9e9e469a657490459cbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MG_QuestionManager
+  gameManager: {fileID: 0}
+  questionTMP: {fileID: 0}
+  aspectTMP: {fileID: 0}
+  winnerTMP: {fileID: 0}
+  answer1TMP: {fileID: 0}
+  answer2TMP: {fileID: 0}
+  answer3TMP: {fileID: 0}
+  answer4TMP: {fileID: 0}
+  chara1: {fileID: 0}
+  chara2: {fileID: 0}
+  chara3: {fileID: 0}
+  chara4: {fileID: 0}
+  questionsList:
+  - "Vous \xEAtes allong\xE9 sur la plage et un enfant vous jette du sable dessus,
+    que lui dites-vous ?"
+  - Vous nagez dans la mer et voyez un requin sapprocher de vous, que faites-vous
+    ?
+  - "Un enfant vient de finir son ch\xE2teau de sable mais un chien fonce droit dessus.
+    Quelle est votre r\xE9action ?"
+  - "Vous vous appr\xEAtiez \xE0 partir de la plage mais le moteur de votre voiture
+    vient de l\xE2cher. Comment allez-vous faire pour rentrer ?"
+  - "Une vieille dame s'est fait enterr\xE9 dans le sable jusqu'au cou par un enfant.
+    Que faites vous ?"
+  - "Un crabe a vol\xE9 une glace au marchand, que faites vous ?"
+  aspectsList:
+  - Bienveillante
+  - Rebelle
+  - "D\xE9bile"
+  - Soutenue

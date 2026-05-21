@@ -12,6 +12,8 @@ public class ServerManager : MonoBehaviour
     public GameManager gameManager;
     public TextMeshProUGUI codeText;
     public TMP_InputField joinInput;
+    public QRCodeManager qrCodeManager;
+    public string codeForQR;
     
     async void Awake()
     {
@@ -25,6 +27,7 @@ public class ServerManager : MonoBehaviour
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
         codeText.text = "ENTER THE CODE [" + joinCode + "]";
+        codeForQR = joinCode;
 
         var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 
@@ -40,9 +43,13 @@ public class ServerManager : MonoBehaviour
         gameManager.SetServer();
     }
 
-    public async void StartClient()
+    public async void StartClient(bool scannedByQR = false)
     {
         string code = joinInput.text;
+        if (scannedByQR)
+        {
+            code = qrCodeManager.codeScanned;
+        }
 
         JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(code);
 
