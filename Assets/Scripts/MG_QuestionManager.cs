@@ -30,13 +30,17 @@ public class MG_QuestionManager : MonoBehaviour
     {
         int r = Random.Range(0, questionsList.Count);
         questionTMP.text = questionsList[r];
+
+        questionsList.RemoveAt(r);
+            
         r = Random.Range(0, aspectsList.Count);
         aspectTMP.text = "Répondez de manière " + aspectsList[r] + " !";
     }
 
-    public void ConfirmAnswer(TextMeshProUGUI answer)   //Fonction appelée par le client quand bouton cliqué
+    public void ConfirmAnswer()   //Fonction appelée par le client quand bouton cliqué
     {
-        gameManager.PlayerSentAnswer(answer.text);
+        // gameManager.PlayerSentAnswer(answer.text);
+        gameManager.PlayerSentAnswer(gameManager.answerArea.text);
     }
 
     public void ShowAnswer(int answerNumber)
@@ -67,6 +71,7 @@ public class MG_QuestionManager : MonoBehaviour
 
     private void EndPrintWinner(string winner, string winnerAnswer)
     {
+        coroutineCounter = 0;
         winnerTMP.text += " " + winner + " !";
 
         if (winnerAnswer == answer1TMP.text)
@@ -87,6 +92,8 @@ public class MG_QuestionManager : MonoBehaviour
         }
         
         StartCoroutine(IlluminateWinnerAnswer(answerToIlluminate));
+        
+        gameManager.gameObject.GetComponent<GameManagerNetwork>().AskToShowNextMGButtonClientRpc();
     }
 
     private IEnumerator Suspense(string winner, string winnerAnswer)
@@ -114,7 +121,10 @@ public class MG_QuestionManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(InIlluminateWinnerAnswer(answer));
+            if (coroutineCounter < 4)  //Pour caper à 4 le nombre de fois que les coroutines s'opèrent
+            {
+                StartCoroutine(InIlluminateWinnerAnswer(answer));
+            }
         }
     }
 
@@ -125,6 +135,7 @@ public class MG_QuestionManager : MonoBehaviour
         if (answer.fontSize < 45)
         {
             StartCoroutine(IlluminateWinnerAnswer(answer));
+            coroutineCounter++;
         }
         else
         {

@@ -1504,7 +1504,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 562896625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1787514859}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: NextMGButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &562896625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4215,6 +4227,7 @@ MonoBehaviour:
   voteButton3: {fileID: 7979392613345200920}
   voteButton4: {fileID: 824953237402196774}
   tieText: {fileID: 230995312}
+  answerArea: {fileID: 2177284399969782953}
   numberOfPlayers:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -18845,7 +18858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: a
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23827,10 +23840,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1621548267400856972}
         m_TargetAssemblyTypeName: MG_QuestionManager, Assembly-CSharp
         m_MethodName: ConfirmAnswer
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 3938256327944322364}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -27244,7 +27257,7 @@ GameObject:
   - component: {fileID: 7487446229503781563}
   - component: {fileID: 3938256327944322364}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlayerAnswer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

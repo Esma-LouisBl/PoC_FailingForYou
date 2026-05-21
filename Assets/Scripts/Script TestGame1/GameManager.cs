@@ -23,6 +23,7 @@ public class GameManager : NetworkBehaviour
     public int totalAnswers;
     public GameObject voteButton1, voteButton2, voteButton3, voteButton4;
     public TextMeshProUGUI tieText;
+    public TMP_InputField answerArea;
 
     public NetworkVariable<int> numberOfPlayers;
     public int myNumberAsPlayer;
@@ -215,6 +216,7 @@ public class GameManager : NetworkBehaviour
     {
         myPlayer.ShowMiniGameServerRpc();
         miniGamePlayerUI.SetActive(true);
+        answerArea.text = "Entrez votre réponse";
         waitingUI.SetActive(false);
     }
 
@@ -249,6 +251,7 @@ public class GameManager : NetworkBehaviour
         else
         {
             PlayerCanVote();
+            answerNumber = 1;
         }
     }
 
@@ -257,7 +260,7 @@ public class GameManager : NetworkBehaviour
         gameObject.GetComponent<GameManagerNetwork>().VotingPhaseClientRpc();
     }
 
-    public void UpdateTotalAnswers(int answers)
+    public void UpdateTotalAnswers()
     {
         totalAnswers = gameObject.GetComponent<GameManagerNetwork>().numberOfPlayers.Value;
     }
@@ -343,9 +346,10 @@ public class GameManager : NetworkBehaviour
         waitingUI.SetActive(false);
     }
 
-    public void ShutDownMiniGame()
+    public void NextMGButtonPressed()   //Quand le bouton Lancer le mini-jeu pressé par VIP
     {
-        waitingUI.SetActive(true);
+        myPlayer.RestartMiniGameServerRpc();
+        nextMiniGamePlayerUI.SetActive(false);
     }
 
     private IEnumerator WaitBeforeAction()

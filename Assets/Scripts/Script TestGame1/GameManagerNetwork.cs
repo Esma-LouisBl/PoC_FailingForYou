@@ -291,7 +291,7 @@ public class GameManagerNetwork : NetworkBehaviour
         gameObject.GetComponent<GameManager>().AskPlayerToShowServerMiniGame();
         
         //Actualisation du nombre de players pour le GameManager (côté client)
-        gameObject.GetComponent<GameManager>().UpdateTotalAnswers(playerObjects.Count);
+        gameObject.GetComponent<GameManager>().UpdateTotalAnswers();
     }
 
     public void ShowMiniGame()  //4ème fonction MG Launch
