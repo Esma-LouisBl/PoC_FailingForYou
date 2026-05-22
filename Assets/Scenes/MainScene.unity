@@ -5123,6 +5123,8 @@ MonoBehaviour:
   accurateAnswerArea: {fileID: 7802046}
   accurateQuestions:
   - {fileID: 11400000, guid: e0a72fa764688694490fe52447e20d34, type: 2}
+  - {fileID: 11400000, guid: f0d0c494585f3594995e29f813905bae, type: 2}
+  - {fileID: 11400000, guid: a6a706bbc470f5749a8bc1e3398c88a5, type: 2}
   currentAccurateQuestion: {fileID: 0}
   numberOfPlayers:
     UpdateTraits:
