@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : NetworkBehaviour
 {
+    public Image test;
 
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI, isSabotageUI, qrCodeUI;
     public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI, tieAccuratePlayerUI, nextMiniGamePlayerUI;
@@ -192,6 +193,7 @@ public class GameManager : NetworkBehaviour
         {
             startCrushButton.SetActive(true);
             Debug.Log("envie de caner");
+            test.color = new Color32(255, 255, 255, 255);
         }
     }
 
