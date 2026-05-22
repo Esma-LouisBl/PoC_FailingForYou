@@ -315,11 +315,12 @@ public class GameManager : NetworkBehaviour
 
     public void Tie(PlayerNetwork player1, PlayerNetwork player2)
     {
+        tieText.text = "C'est une égalité !";
         tieServerUI.SetActive(true);
         votingServerUI.SetActive(false);
         
         // 50-50 : soit au pif, soit question qui départage objectivement
-        int r = Random.Range(0, 1);
+        int r = Random.Range(0, 2);
         if (r == 0)
         {
             RandomTie(player1, player2);
