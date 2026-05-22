@@ -187,9 +187,11 @@ public class GameManager : NetworkBehaviour
     }
     public void ShowCrushButton()
     {
+        Debug.Log("on passe par la fonction");
         if (myPlayer.isVip)
         {
             startCrushButton.SetActive(true);
+            Debug.Log("envie de caner");
         }
     }
 
