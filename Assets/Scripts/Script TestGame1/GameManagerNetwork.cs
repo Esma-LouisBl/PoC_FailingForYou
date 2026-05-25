@@ -65,6 +65,8 @@ public class GameManagerNetwork : NetworkBehaviour
     public PlayerNetwork nearestPlayerToAccurate;
     public int nearestIntToAccurate;
     
+    public RawImage QRCodeImage;
+    
     public void RegisterPlayer(PlayerNetwork player)
     {
         if (IsServer)
@@ -107,6 +109,10 @@ public class GameManagerNetwork : NetworkBehaviour
                     {
                         StartCoroutine(gameObject.GetComponent<GameManager>().ShowCrushPart2());
                         FindFirstObjectByType<SpawnerBehavior>().numberOfPlayers = players.Count;
+                    }
+                    else if (players.Count == 1)
+                    {
+                        QRCodeImage.enabled = true;
                     }
                 }
                 break;
