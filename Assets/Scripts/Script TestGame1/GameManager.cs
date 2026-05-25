@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class GameManager : NetworkBehaviour
 {
-    public Image test;
-
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI, isSabotageUI, qrCodeUI;
     public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI, tieAccuratePlayerUI, nextMiniGamePlayerUI;
     public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
@@ -80,7 +78,7 @@ public class GameManager : NetworkBehaviour
     public IEnumerator ShowCrushPart2()    //Exécuté sur chaque téléphone
     {
         float timeToWait = myNumberAsPlayer;
-        timeToWait /= 2.5f;
+        timeToWait /= 2f;
         // Debug.Log("temps : " + timeToWait);
         yield return new WaitForSeconds(timeToWait);
         
@@ -188,12 +186,9 @@ public class GameManager : NetworkBehaviour
     }
     public void ShowCrushButton()
     {
-        Debug.Log("on passe par la fonction");
         if (myPlayer.isVip)
         {
             startCrushButton.SetActive(true);
-            Debug.Log("envie de caner");
-            test.color = new Color32(255, 255, 255, 255);
         }
     }
 
@@ -410,7 +405,7 @@ public class GameManager : NetworkBehaviour
 
     private IEnumerator WaitBeforeAction()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
         ShowCrushButton();
     }
 

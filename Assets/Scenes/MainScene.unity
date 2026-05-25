@@ -5089,7 +5089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   ShowTopMostFoldoutHeaderGroup: 1
-  test: {fileID: 4692888572609670480}
   playerUI: {fileID: 3816797492113148054}
   serverUI: {fileID: 6426443318751407502}
   connectionUI: {fileID: 657361309}
@@ -11729,15 +11728,15 @@ MonoBehaviour:
   questionsList:
   - "Vous \xEAtes allong\xE9 sur la plage et un enfant vous jette du sable dessus,
     que lui dites-vous ?"
-  - Vous nagez dans la mer et voyez un requin sapprocher de vous, que faites-vous
+  - Vous nagez dans la mer et voyez un requin s'approcher de vous, que faites-vous
     ?
   - "Un enfant vient de finir son ch\xE2teau de sable mais un chien fonce droit dessus.
     Quelle est votre r\xE9action ?"
   - "Vous vous appr\xEAtiez \xE0 partir de la plage mais le moteur de votre voiture
     vient de l\xE2cher. Comment allez-vous faire pour rentrer ?"
-  - "Une vieille dame s'est fait enterr\xE9 dans le sable jusqu'au cou par un enfant.
-    Que faites vous ?"
-  - "Un crabe a vol\xE9 une glace au marchand, que faites vous ?"
+  - Une vieille dame s'est faite enterrer dans le sable jusqu'au cou par un enfant.
+    Que faites vous ?
+  - "Un crabe a vol\xE9 une glace au marchand, que faites-vous ?"
   aspectsList:
   - Bienveillante
   - Rebelle
