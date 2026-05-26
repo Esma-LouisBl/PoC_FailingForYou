@@ -199,7 +199,7 @@ public class PlayerNetwork : NetworkBehaviour
     }
     
     [ServerRpc]
-    public void ShowMiniGameServerRpc() //3ème fonction MG Launch
+    public void ShowMiniGameServerRpc() //3ème fonction MG Launch   Lancée par chaque client
     {
         gameManagerNetwork.ShowMiniGame();
     }

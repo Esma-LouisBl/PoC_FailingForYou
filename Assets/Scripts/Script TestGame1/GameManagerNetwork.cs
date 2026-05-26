@@ -310,7 +310,7 @@ public class GameManagerNetwork : NetworkBehaviour
         gameObject.GetComponent<GameManager>().UpdateTotalAnswers();
     }
 
-    public void ShowMiniGame()  //4ème fonction MG Launch
+    public void ShowMiniGame()  //4ème fonction MG Launch        Côté serveur
     {
         gameObject.GetComponent<GameManager>().ShowMiniGameServer();
         

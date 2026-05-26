@@ -224,7 +224,10 @@ public class GameManager : NetworkBehaviour
 
     public void AskPlayerToShowServerMiniGame() //2ème fonction MG Launch
     {
-        myPlayer.ShowMiniGameServerRpc();
+        if (myNumberAsPlayer == 1)
+        {
+            myPlayer.ShowMiniGameServerRpc();
+        }
         miniGamePlayerUI.SetActive(true);
         answerArea.text = "Entrez votre réponse";   //ça joue le rôle d'un placeholder sinon la dernière réponse reste présente dans l'input field
         waitingUI.SetActive(false);
