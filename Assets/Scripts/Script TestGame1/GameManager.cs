@@ -331,6 +331,25 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+    public void TieBetweenFour(PlayerNetwork player1, PlayerNetwork player2, PlayerNetwork player3,
+        PlayerNetwork player4)
+    {
+        tieText.text = "C'est une égalité !";
+        tieServerUI.SetActive(true);
+        votingServerUI.SetActive(false);
+        
+        int r = Random.Range(0, 2);
+        switch (r)
+        {
+            case 0:
+                RandomTie(player1, player2);
+                break;
+            case 1:
+                RandomTie(player3, player4);
+                break;
+        }
+    }
+
     public void AccurateQuestionTie(PlayerNetwork player1, PlayerNetwork player2)
     {
         currentAccurateQuestion = accurateQuestions[Random.Range(0, accurateQuestions.Count)];

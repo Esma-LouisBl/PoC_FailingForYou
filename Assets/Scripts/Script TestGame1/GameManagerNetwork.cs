@@ -449,8 +449,12 @@ public class GameManagerNetwork : NetworkBehaviour
                 bestAnswer = playerObjects[3].playerNetwork.lastAnswer;
             }
             else
-            {   // CAS D’ÉGALITÉ ENTRE 2 JOUEURS
-                if (vote1 == vote2)
+            {   // CAS D’ÉGALITÉ
+                if (vote1 == vote2 && vote2 == vote3 && vote3 == vote4)
+                {
+                    gameObject.GetComponent<GameManager>().TieBetweenFour(playerObjects[0].playerNetwork, playerObjects[1].playerNetwork, playerObjects[2].playerNetwork, playerObjects[3].playerNetwork);
+                }
+                else if (vote1 == vote2)
                 {
                     gameObject.GetComponent<GameManager>().Tie(playerObjects[0].playerNetwork, playerObjects[1].playerNetwork);
                 }
