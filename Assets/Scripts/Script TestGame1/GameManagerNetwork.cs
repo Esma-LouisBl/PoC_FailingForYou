@@ -19,16 +19,19 @@ public class GameManagerNetwork : NetworkBehaviour
     
     //RELATIVE TO CRUSH CREATION
     public List<Sprite> allCrushHairSprites;
+    public List<Sprite> allCrushBackHairSprites;
     public List<Sprite> allCrushFacesSprites;
     public List<Sprite> allCrushAccessoriesSprites;
     public List<Sprite> allCrushClothesSprites;
     
     public Sprite crushHair;
+    public Sprite crushBackHair;
     public Sprite crushFace;
     public Sprite crushAccessory;
     public Sprite crushClothes;
 
     public Image crushHairSlot;
+    public Image crushBackHairSlot;
     public Image crushFaceSlot;
     public Image crushAccessorySlot;
     public Image crushClothesSlot;
@@ -40,6 +43,7 @@ public class GameManagerNetwork : NetworkBehaviour
     public List<string> crushNamePropositions;
     public string crushName;
     public TextMeshProUGUI crushNameUI;
+    public GameObject crushNameBg;
 
     // public CrushCreation crushManager;
 
@@ -225,6 +229,7 @@ public class GameManagerNetwork : NetworkBehaviour
         if (sprite <= 6)
         {
             crushHair = allCrushHairSprites[sprite-1];
+            crushBackHair = allCrushBackHairSprites[sprite-1];
         }
         else if (sprite <= 12)
         {
@@ -244,6 +249,7 @@ public class GameManagerNetwork : NetworkBehaviour
         if (crushPartsChosen == playerObjects.Count)
         {
             crushHairSlot.sprite = crushHair;
+            crushBackHairSlot.sprite = crushBackHair;
             crushFaceSlot.sprite = crushFace;
             crushAccessorySlot.sprite = crushAccessory;
             crushClothesSlot.sprite = crushClothes;
@@ -281,6 +287,7 @@ public class GameManagerNetwork : NetworkBehaviour
             int r = Random.Range(0, crushNamePropositions.Count);
             crushName = crushNamePropositions[r];
             crushNameUI.text = crushName;
+            crushNameBg.SetActive(true);
 
             StartCoroutine(WaitToAdmireCrushName());
         }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CrushCreationButton : MonoBehaviour
 {
-    public Image previewImage;
+    public Image previewImage, previewBackHair;
 
     public int spriteInt;
     
@@ -18,6 +18,8 @@ public class CrushCreationButton : MonoBehaviour
         if (spriteInt <= 6)
         {
             previewImage.sprite = gameManagerNetwork.allCrushHairSprites[spriteInt-1];
+            previewBackHair.sprite = gameManagerNetwork.allCrushBackHairSprites[spriteInt-1];
+            previewBackHair.enabled = true;
         }
         else if (spriteInt <= 12)
         {

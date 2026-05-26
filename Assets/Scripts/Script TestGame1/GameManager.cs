@@ -10,7 +10,7 @@ public class GameManager : NetworkBehaviour
 {
     public GameObject playerUI, serverUI, connectionUI, playerCrushUI, serverCrushUI, playerNameUI, playerCharacterUI, playerCrushNameUI, waitingUI, isSabotageUI, qrCodeUI;
     public GameObject miniGameServerUI, miniGamePlayerUI, votingServerUI, votingPlayerUI, tieServerUI, tieAccuratePlayerUI, nextMiniGamePlayerUI;
-    public GameObject crushHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
+    public GameObject crushHair, crushBackHair, crushAccessories, crushFaces, crushClothes; //Relative to Crush Creation
     private List<string> crushParts = new List<string>();
     public TextMeshProUGUI myNumberAsPlayerText;
     
@@ -98,6 +98,7 @@ public class GameManager : NetworkBehaviour
         {
             case "Hair":
                 crushHair.SetActive(true);
+                crushBackHair.SetActive(true);
                 break;
             case "Accessories":
                 crushAccessories.SetActive(true);
